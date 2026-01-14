@@ -18,4 +18,3 @@ project(':core').projectDir = file('../core')
 include('desktop')
 project(':desktop').projectDir = file('../desktop')
 include 'game'
-include 'game'
