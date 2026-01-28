@@ -3,6 +3,9 @@ package com.nikitos;
 import com.nikitos.utils.Utils;
 
 public class MainRenderer extends GamePageClass {
+    public MainRenderer(){
+
+    }
 
     @Override
     public void draw() {
