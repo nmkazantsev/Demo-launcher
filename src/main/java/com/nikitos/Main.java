@@ -1,6 +1,7 @@
 package com.nikitos;
 
 
+import com.nikitos.platform.DesktopLauncher;
 import com.nikitos.platformBridge.LauncherParams;
 
 
