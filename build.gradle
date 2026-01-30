@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'com.nikitos'
@@ -17,4 +19,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+
+tasks.shadowJar {
+    archiveBaseName.set('demo-app')
+    archiveVersion.set('1.0.0')
+    archiveClassifier.set('')
+}
+
+application {
+    mainClass = 'com.nikitos.Main'
 }

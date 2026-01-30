@@ -65,7 +65,7 @@ public class MainRenderer extends GamePageClass {
         shader.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
-        simplePolygon.prepareAndDraw(0,0,300,300);
+        simplePolygon.prepareAndDraw(100,100,300,1);
     }
 
     @Override
