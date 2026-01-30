@@ -9,6 +9,7 @@ import com.nikitos.maths.Matrix;
 import com.nikitos.platformBridge.PlatformBridge;
 import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
@@ -55,16 +56,16 @@ public class MainRenderer extends GamePageClass {
         camera = new Camera(Utils.x, Utils.y);
         camera.resetFor2d();
 
-        simplePolygon = new SimplePolygon(this::redraw, true, 0,this);
+        simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
     }
 
     @Override
     public void draw() {
-        Utils.background(255, 100, 0);
+        Utils.background(255, 255, 255);
         shader.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
-
+        simplePolygon.prepareAndDraw(0,0,300,300);
     }
 
     @Override
@@ -77,7 +78,9 @@ public class MainRenderer extends GamePageClass {
 
     }
 
-    private PImage redraw(List<Object> params){
-        PImage image = new PImage(200,200);
+    private PImage redraw(List<Object> params) {
+        PImage image = new PImage(200, 200);
+        image.background(255, 0, 255, 255);
+        return image;
     }
 }
