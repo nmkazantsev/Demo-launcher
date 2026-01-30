@@ -78,6 +78,6 @@ public class MainRenderer extends GamePageClass {
     }
 
     private PImage redraw(List<Object> params){
-        PImage image = new PImage();
+        PImage image = new PImage(200,200);
     }
 }
