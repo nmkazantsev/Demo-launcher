@@ -29,18 +29,16 @@ public class MainRenderer extends GamePageClass {
 
     public MainRenderer() {
         pb = CoreRenderer.engine.getPlatformBridge();
-        String path = System.getProperty("user.dir") + "/../Demo/game/src/main/shaders/";
-        pb.print(path);
         ///vertex_shader.glsl
         InputStream vertex;
         try {
-            vertex = new FileInputStream(path + "vertex_shader.glsl");
+            vertex =  this.getClass().getResourceAsStream( "/vertex_shader.glsl");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         InputStream fragment;
         try {
-            fragment = new FileInputStream(path + "fragment_shader.glsl");
+            fragment = this.getClass().getResourceAsStream( "/fragment_shader.glsl");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

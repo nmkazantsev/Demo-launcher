@@ -16,14 +16,23 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fix order of projects">
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/deviceManager.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Demo App/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Demo App/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="add builder to app">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/exposition_fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/exposition_fragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/fragment_shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/fragment_shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/fragment_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/fragment_shader_light.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/fragment_shadow.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/fragment_shadow.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/line_fragmant.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/line_fragmant.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/line_vertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/line_vertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/skybox_fragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/skybox_fragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/skybox_vertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/skybox_vertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/vertex_shader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/vertex_shader.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/vertex_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/vertex_shader_light.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/shaders/vertex_shadow.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/vertex_shadow.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +72,7 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sealEngine_3M" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -101,7 +110,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "1-проблемы-с-pimage",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo",
     "node.js.detected.package.eslint": "true",
@@ -117,6 +126,9 @@
     <key name="android.template.116831056">
       <recent name="com.example.myapplication" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/game/src/main/resources" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -124,7 +136,7 @@
       <command value="gradle shadowJar" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.Demo [shadowJar]">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.nikitos.Main" />
       <module name="Demo.main" />
@@ -209,7 +221,8 @@
       <workItem from="1768417774857" duration="187000" />
       <workItem from="1768417970484" duration="2244000" />
       <workItem from="1768422308511" duration="42000" />
-      <workItem from="1769771046308" duration="774000" />
+      <workItem from="1769771046308" duration="1247000" />
+      <workItem from="1769794815036" duration="3661000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -219,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768418820436</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add builder to app">
+      <option name="closed" value="true" />
+      <created>1769771948033</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1769771948033</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +262,8 @@
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
     <MESSAGE value="fix order of projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix order of projects" />
+    <MESSAGE value="add builder to app" />
+    <option name="LAST_COMMIT_MESSAGE" value="add builder to app" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
