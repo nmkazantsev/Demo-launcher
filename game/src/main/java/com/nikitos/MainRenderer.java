@@ -4,6 +4,7 @@ import com.nikitos.main.camera.Camera;
 import com.nikitos.main.images.PImage;
 import com.nikitos.main.shaders.Shader;
 import com.nikitos.main.shaders.default_adaptors.MainShaderAdaptor;
+import com.nikitos.main.vertices.Shape;
 import com.nikitos.main.vertices.SimplePolygon;
 import com.nikitos.maths.Matrix;
 import com.nikitos.platformBridge.PlatformBridge;
@@ -27,31 +28,19 @@ public class MainRenderer extends GamePageClass {
 
     private float[] matrix = new float[16];
 
-    private Camera camera;
+    private final Camera camera;
 
-    private SimplePolygon simplePolygon;
+    private final SimplePolygon simplePolygon;
+    private final Shape shape;
 
     public MainRenderer() {
         engine = CoreRenderer.engine;
         pb = engine.getPlatformBridge();
-        ///vertex_shader.glsl
-        InputStream vertex;
-        try {
-            vertex = this.getClass().getResourceAsStream("/vertex_shader.glsl");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        InputStream fragment;
-        try {
-            fragment = this.getClass().getResourceAsStream("/fragment_shader.glsl");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
         FileUtils fileUtils = new FileUtils();
         shader = new Shader(
-                fileUtils.readFile(vertex),
-                fileUtils.readFile(fragment),
+                fileUtils.readFileFromAssets(this.getClass(), "/vertex_shader.glsl"),
+                fileUtils.readFileFromAssets(this.getClass(), "/fragment_shader.glsl"),
                 this, new MainShaderAdaptor());
 
         matrix = Matrix.resetTranslateMatrix(matrix);
@@ -60,15 +49,26 @@ public class MainRenderer extends GamePageClass {
         camera.resetFor2d();
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
+        shape = new Shape("/shape/ponchik.obj", "/shape/texture.png", this, this.getClass());
     }
 
     @Override
     public void draw() {
         Utils.background(255, 255, 255);
         shader.apply();
-        camera.apply();
+        Matrix.rotateM(matrix, 0, engine.pageMillis() / 10.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
-        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f)*kx, (engine.pageMillis() / 100.0f + 100.0f)*ky, 300, 1);
+
+        camera.cameraSettings.eyeZ = 15;
+        camera.resetFor3d();
+        camera.apply();
+        shape.prepareAndDraw();
+
+
+        camera.apply();
+        matrix = Matrix.resetTranslateMatrix(matrix);
+        Matrix.applyMatrix(matrix);
+        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * kx, (engine.pageMillis() / 100.0f + 100.0f) * ky, 300 * kx, 1);
     }
 
     @Override
