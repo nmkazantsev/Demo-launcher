@@ -6,6 +6,7 @@ import com.nikitos.main.shaders.Shader;
 import com.nikitos.main.shaders.default_adaptors.MainShaderAdaptor;
 import com.nikitos.main.vertices.Shape;
 import com.nikitos.main.vertices.SimplePolygon;
+import com.nikitos.main.vertices.SkyBox;
 import com.nikitos.maths.Matrix;
 import com.nikitos.platformBridge.PlatformBridge;
 import com.nikitos.utils.FileUtils;
@@ -33,6 +34,9 @@ public class MainRenderer extends GamePageClass {
     private final SimplePolygon simplePolygon;
     private final Shape shape;
 
+    private final SkyBox skyBox;
+    private final Shader skyBoxShader;
+
     public MainRenderer() {
         engine = CoreRenderer.engine;
         pb = engine.getPlatformBridge();
@@ -50,19 +54,32 @@ public class MainRenderer extends GamePageClass {
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         shape = new Shape("/shape/ponchik.obj", "/shape/texture.png", this, this.getClass());
+
+        skyBox = new SkyBox("/skybox/", "jpg", this);
+
+        skyBoxShader = new Shader(
+                fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_vertex.glsl"),
+                fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_fragment.glsl"),
+                this, new MainShaderAdaptor());
     }
 
     @Override
     public void draw() {
         Utils.background(255, 255, 255);
-        shader.apply();
-        Matrix.rotateM(matrix, 0, engine.pageMillis() / 10.0f, 0, 1, 1);
-        Matrix.applyMatrix(matrix);
+        skyBoxShader.apply();
 
         camera.cameraSettings.eyeZ = 15;
         camera.resetFor3d();
         camera.apply();
+
+        skyBox.prepareAndDraw();
+
+
+        shader.apply();
+        Matrix.rotateM(matrix, 0, engine.pageMillis() / 10.0f, 0, 1, 1);
+        Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
+
 
 
         camera.apply();
