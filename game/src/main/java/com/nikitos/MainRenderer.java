@@ -16,8 +16,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
+import static com.nikitos.utils.Utils.kx;
+import static com.nikitos.utils.Utils.ky;
+
 
 public class MainRenderer extends GamePageClass {
+    private final Engine engine;
     private final Shader shader;
     private final PlatformBridge pb;
 
@@ -28,17 +32,18 @@ public class MainRenderer extends GamePageClass {
     private SimplePolygon simplePolygon;
 
     public MainRenderer() {
-        pb = CoreRenderer.engine.getPlatformBridge();
+        engine = CoreRenderer.engine;
+        pb = engine.getPlatformBridge();
         ///vertex_shader.glsl
         InputStream vertex;
         try {
-            vertex =  this.getClass().getResourceAsStream( "/vertex_shader.glsl");
+            vertex = this.getClass().getResourceAsStream("/vertex_shader.glsl");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         InputStream fragment;
         try {
-            fragment = this.getClass().getResourceAsStream( "/fragment_shader.glsl");
+            fragment = this.getClass().getResourceAsStream("/fragment_shader.glsl");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -63,7 +68,7 @@ public class MainRenderer extends GamePageClass {
         shader.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
-        simplePolygon.prepareAndDraw(100,100,300,1);
+        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f)*kx, (engine.pageMillis() / 100.0f + 100.0f)*ky, 300, 1);
     }
 
     @Override
