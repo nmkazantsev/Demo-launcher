@@ -16,11 +16,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fix turn, check 3d">
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/GeneralBridgeDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/GeneralBridgeDesktop.java" afterDir="false" />
-    </list>
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="framebuffers works" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,7 +216,7 @@
       <workItem from="1769794815036" duration="5634000" />
       <workItem from="1769867453877" duration="2173000" />
       <workItem from="1769883529707" duration="600000" />
-      <workItem from="1769891646029" duration="302000" />
+      <workItem from="1769891646029" duration="691000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -246,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769878654313</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="framebuffers works">
+      <option name="closed" value="true" />
+      <created>1769892220120</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1769892220120</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +274,8 @@
     <MESSAGE value="fix order of projects" />
     <MESSAGE value="add builder to app" />
     <MESSAGE value="fix turn, check 3d" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix turn, check 3d" />
+    <MESSAGE value="framebuffers works" />
+    <option name="LAST_COMMIT_MESSAGE" value="framebuffers works" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
