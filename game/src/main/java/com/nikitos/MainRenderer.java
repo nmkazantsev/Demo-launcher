@@ -19,11 +19,7 @@ import com.nikitos.platformBridge.PlatformBridge;
 import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Function;
 
 import static com.nikitos.utils.Utils.*;
 
@@ -67,7 +63,7 @@ public class MainRenderer extends GamePageClass {
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         shape = new Shape("/shape/ponchik.obj", "/shape/texture.png", this, this.getClass());
-        shape.addNormalMap("/shape/normal_tex.png");
+        shape.addNormalMap("/shape/normal_tex_smooth.png");
 
         skyBox = new SkyBox("/skybox/", "jpg", this);
 
@@ -76,7 +72,7 @@ public class MainRenderer extends GamePageClass {
                 fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_fragment.glsl"),
                 this, new MainShaderAdaptor());
 
-        lightShader= new Shader(
+        lightShader = new Shader(
                 fileUtils.readFileFromAssets(this.getClass(), "/shape/vertex_shader_light.glsl"),
                 fileUtils.readFileFromAssets(this.getClass(), "/shape/fragment_shader_light.glsl"),
                 this, new LightShaderAdaptor());
@@ -126,6 +122,7 @@ public class MainRenderer extends GamePageClass {
         skyBoxShader.apply();
 
         camera.resetFor3d();
+        camera.cameraSettings.eyeZ = 1;
         camera.apply();
 
         skyBox.prepareAndDraw();
@@ -133,7 +130,7 @@ public class MainRenderer extends GamePageClass {
         lightShader.apply();
         material.apply();
         camera.apply();
-        Matrix.rotateM(matrix, 0, engine.pageMillis() / 10.0f, 0, 1, 1);
+        Matrix.rotateM(matrix, 0, engine.pageMillis() / 50.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
         fb.connectDefaultFrameBuffer();

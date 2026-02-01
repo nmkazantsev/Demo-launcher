@@ -86,7 +86,7 @@ uniform vec3 viewPos;
 void main()
 {
     gl_Position = projection * view * model * vec4(aPos, 1.0f);
-    data.FragPos = (vec4(aPos, 1.0f) * transpose(model)).xyz;
+    data.FragPos = vec3(model * vec4(aPos, 1.0));
     data.TexCoord = vec2(aTexCoord.x, aTexCoord.y);
     data.normal = normalize(normalVec);
     data.model2 = model;
@@ -97,14 +97,14 @@ void main()
     vec3 B = cross(N, T);
     mat3 TBN = transpose(mat3(T, B, N));
     for (int i = 0;i < pLightNum; i++) {
-        pLightPos[i] = TBN * pLights[i].position;
+        pLightPos[i] = TBN * (pLights[i].position - data.FragPos);
     }
     for (int i = 0;i < dLightNum; i++) {
         dLightDir[i] = TBN * (-dLights[i].direction);
     }
     for (int i = 0;i < sLightNum; i++) {
         sLightDir[i] = TBN * sLights[i].direction;
-        sLightPos[i] = TBN * sLights[i].position;
+        sLightPos[i] = TBN * (sLights[i].position - data.FragPos);
     }
     data.TangentViewPos = TBN * viewPos;
     data.TangentFragPos = TBN * vec3(model * vec4(aPos, 1.0));
