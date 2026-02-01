@@ -142,7 +142,7 @@ void main()
     vec3 viewDir = normalize(data.TangentViewPos - data.TangentFragPos);
     vec3 norm;
     if (normalMapEnable == 1) {
-        norm = normalize(texture(normalMap, data.TexCoord).rgb * 2.0 - 1.0);// god bless, everything is NORM
+            norm = normalize(texture(normalMap, data.TexCoord).rgb * 2.0 - 1.0);// god bless, everything is NORM
     } else {
         norm = vec3(0.0, 0.0, 1.0);
     }

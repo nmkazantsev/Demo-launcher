@@ -16,22 +16,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="framebuffers works">
-      <change afterPath="$PROJECT_DIR$/game/src/main/resources/shape/normal_map.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game/src/main/resources/shape/normal_tex.png" afterDir="false" />
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="pc light works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/resources/fragment_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/resources/vertex_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/shape/vertex_shader_light.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/engine/main/light/AmbientLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/light/AmbientLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/engine/main/light/DirectedLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/light/DirectedLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/engine/main/light/ExpouseSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/light/ExpouseSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/engine/main/light/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/light/Material.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/engine/main/light/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/light/PointLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/engine/main/light/SourceLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/light/SourceLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/platform/GeneralBridgeAndroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/android/src/main/java/com/seal/gl_engine/platform/GeneralBridgeAndroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/shaders/ShaderData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/shaders/ShaderData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/frameBuffers/FrameBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/frameBuffers/FrameBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Shape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/platformBridge/GeneralPlatformBridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/platformBridge/GeneralPlatformBridge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/GeneralBridgeDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/GeneralBridgeDesktop.java" afterDir="false" />
     </list>
@@ -73,7 +65,7 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sealEngine_3M" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -102,30 +94,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Demo [:com.nikitos.Main.main()].executor": "Run",
-    "Gradle.Demo [jar].executor": "Run",
-    "Gradle.Demo [shadowJar].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo/game/src/main/resources/shape",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Demo [:com.nikitos.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Demo [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Demo [shadowJar].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo/game/src/main/resources/shape&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.116831056">
       <recent name="com.example.myapplication" />
@@ -235,7 +227,9 @@
       <workItem from="1769794815036" duration="5634000" />
       <workItem from="1769867453877" duration="2173000" />
       <workItem from="1769883529707" duration="600000" />
-      <workItem from="1769891646029" duration="1954000" />
+      <workItem from="1769891646029" duration="3474000" />
+      <workItem from="1769897466632" duration="672000" />
+      <workItem from="1769927527494" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -269,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769892220120</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="pc light works">
+      <option name="closed" value="true" />
+      <created>1769893625756</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1769893625756</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,7 +296,8 @@
     <MESSAGE value="add builder to app" />
     <MESSAGE value="fix turn, check 3d" />
     <MESSAGE value="framebuffers works" />
-    <option name="LAST_COMMIT_MESSAGE" value="framebuffers works" />
+    <MESSAGE value="pc light works" />
+    <option name="LAST_COMMIT_MESSAGE" value="pc light works" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
