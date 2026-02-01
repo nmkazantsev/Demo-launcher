@@ -1,6 +1,7 @@
 package com.nikitos;
 
 import com.nikitos.main.camera.Camera;
+import com.nikitos.main.debugger.Axes;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PImage;
 import com.nikitos.main.light.AmbientLight;
@@ -46,6 +47,7 @@ public class MainRenderer extends GamePageClass {
     private final DirectedLight directedLight1;
     private final Material material;
 
+    private final Axes axes;
     public MainRenderer() {
         engine = CoreRenderer.engine;
         pb = engine.getPlatformBridge();
@@ -113,6 +115,7 @@ public class MainRenderer extends GamePageClass {
         material.diffuse = new PVector(1);
         material.shininess = 1.1f;
 
+        axes = new Axes(this);
     }
 
     @Override
@@ -130,6 +133,8 @@ public class MainRenderer extends GamePageClass {
         lightShader.apply();
         material.apply();
         camera.apply();
+        Matrix.applyMatrix(matrix);
+        axes.drawAxes(6,0.5f, 0.2f,null, camera);
         Matrix.rotateM(matrix, 0, engine.pageMillis() / 50.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
