@@ -104,7 +104,7 @@ public class MainRenderer extends GamePageClass {
         sourceLight.linear = 0.01f;
         sourceLight.quadratic = 0.01f;
         sourceLight.color = new PVector(0.5f);
-        sourceLight.position = new PVector(2.7f, 0, 0);
+        sourceLight.position = new PVector(5f, 0, 0);
         sourceLight.direction = new PVector(-0.3f, 0, 0);
         sourceLight.outerCutOff = cos(radians(40));
         sourceLight.cutOff = cos(radians(30f));
@@ -125,7 +125,7 @@ public class MainRenderer extends GamePageClass {
         skyBoxShader.apply();
 
         camera.resetFor3d();
-        camera.cameraSettings.eyeZ = 1;
+        camera.cameraSettings.eyeZ = 5;
         camera.apply();
 
         skyBox.prepareAndDraw();
@@ -146,7 +146,7 @@ public class MainRenderer extends GamePageClass {
         matrix = Matrix.resetTranslateMatrix(matrix);
         Matrix.applyMatrix(matrix);
         fb.drawTexture(new PVector(0, 0, 1), new PVector(x, 0, 1), new PVector(0, y, 1));
-        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * kx, (engine.pageMillis() / 100.0f + 100.0f) * ky, 300 * kx, 1.1f);
+        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * kx, (engine.pageMillis() / 100.0f + 100.0f) * ky, 30 * kx, 1.1f);
     }
 
     @Override

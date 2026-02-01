@@ -17,17 +17,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="pc light works">
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/animator/Animator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/animator/FC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/debugger/Axes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/debugger/DebugValueFloat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/debugger/Debugger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/engine_object/SealObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/resources/line_fragmant.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/resources/line_vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/MotionEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/utils/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +62,7 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sealEngine_3M" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -234,7 +229,7 @@
       <workItem from="1769883529707" duration="600000" />
       <workItem from="1769891646029" duration="3474000" />
       <workItem from="1769897466632" duration="672000" />
-      <workItem from="1769927527494" duration="4890000" />
+      <workItem from="1769927527494" duration="5597000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
