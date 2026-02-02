@@ -17,12 +17,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="pc light works">
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/MotionEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/resources/line_fragmant.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/resources/line_vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/CoreRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/CoreRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +64,7 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sealEngine_3M" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -103,7 +105,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "8bd6bc6b",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo/game/src/main/resources/shape",
     "node.js.detected.package.eslint": "true",
@@ -230,6 +232,9 @@
       <workItem from="1769891646029" duration="3474000" />
       <workItem from="1769897466632" duration="672000" />
       <workItem from="1769927527494" duration="5597000" />
+      <workItem from="1769955387719" duration="1107000" />
+      <workItem from="1769971832832" duration="977000" />
+      <workItem from="1769978747206" duration="50000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
