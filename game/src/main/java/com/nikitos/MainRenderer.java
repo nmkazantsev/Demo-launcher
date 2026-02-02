@@ -1,5 +1,12 @@
 package com.nikitos;
 
+import static com.nikitos.utils.Utils.cos;
+import static com.nikitos.utils.Utils.kx;
+import static com.nikitos.utils.Utils.ky;
+import static com.nikitos.utils.Utils.radians;
+import static com.nikitos.utils.Utils.x;
+import static com.nikitos.utils.Utils.y;
+
 import com.nikitos.main.camera.Camera;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PImage;
@@ -21,8 +28,6 @@ import com.nikitos.utils.Utils;
 
 import java.util.List;
 
-import static com.nikitos.utils.Utils.*;
-
 
 public class MainRenderer extends GamePageClass {
     private final Engine engine;
@@ -31,7 +36,7 @@ public class MainRenderer extends GamePageClass {
 
     private float[] matrix = new float[16];
 
-    private final Camera camera;
+    private Camera camera;
 
     private final SimplePolygon simplePolygon;
     private final Shape shape;
@@ -39,7 +44,7 @@ public class MainRenderer extends GamePageClass {
     private final SkyBox skyBox;
     private final Shader skyBoxShader;
 
-    private final FrameBuffer fb;
+    private FrameBuffer fb;
 
     private final SourceLight sourceLight;
     private final AmbientLight ambientLight;
@@ -49,7 +54,7 @@ public class MainRenderer extends GamePageClass {
     public MainRenderer() {
         engine = CoreRenderer.engine;
         pb = engine.getPlatformBridge();
-
+        pb.log_i("main_renderer", "created main renderer");
         FileUtils fileUtils = new FileUtils();
         shader = new Shader(
                 fileUtils.readFileFromAssets(this.getClass(), "/vertex_shader.glsl"),
@@ -57,9 +62,6 @@ public class MainRenderer extends GamePageClass {
                 this, new MainShaderAdaptor());
 
         matrix = Matrix.resetTranslateMatrix(matrix);
-
-        camera = new Camera(x, Utils.y);
-        camera.resetFor2d();
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         shape = new Shape("/shape/ponchik.obj", "/shape/texture.png", this, this.getClass());
@@ -76,9 +78,6 @@ public class MainRenderer extends GamePageClass {
                 fileUtils.readFileFromAssets(this.getClass(), "/shape/vertex_shader_light.glsl"),
                 fileUtils.readFileFromAssets(this.getClass(), "/shape/fragment_shader_light.glsl"),
                 this, new LightShaderAdaptor());
-
-
-        fb = new FrameBuffer((int) x, (int) Utils.y, this);
 
         ambientLight = new AmbientLight(this);
         // ambientLight.color = new Vec3(0.3f, 0.3f, 0.3f);
@@ -114,6 +113,13 @@ public class MainRenderer extends GamePageClass {
         material.shininess = 1.1f;
 
 
+    }
+
+    @Override
+    public void onSurfaceChanged(int x, int y) {
+        fb = new FrameBuffer(x, y, this);
+        camera = new Camera(x, Utils.y);
+        camera.resetFor2d();
     }
 
     @Override
