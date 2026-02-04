@@ -2,46 +2,59 @@
 precision highp float;
 precision highp int;
 
-#define  snumber 1//spot number
-#define  dnumber 1//direct number
-#define  pnumber 1//point number
+// количество источников света каждого типа
+#define  snumber 1
+#define  dnumber 1
+#define  pnumber 1
 
+// ===== ВХОДНЫЕ АТРИБУТЫ ВЕРШИНЫ =====
+
+// позиция вершины в object space
 layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec2 aTexCoord;
-layout (location = 2) in vec3 normalVec;
-layout (location = 3) in vec3 aT;//abs tangent
-layout (location = 4) in vec3 aB;//absolute bitangent
 
+// UV координаты вершины
+layout (location = 1) in vec2 aTexCoord;
+
+// нормаль вершины (per-vertex normal, из меша)
+layout (location = 2) in vec3 normalVec;
+
+// tangent вершины (перпендикулярен нормали, направлен вдоль U)
+layout (location = 3) in vec3 aT;
+
+// bitangent вершины (перпендикулярен нормали и tangent)
+layout (location = 4) in vec3 aB;
+
+// ===== СТРУКТУРА ДАННЫХ ДЛЯ ФРАГМЕНТНОГО ШЕЙДЕРА =====
+out struct Data {
+    mat4 model2;              // модельная матрица (не используется, но передаётся)
+    vec3 normal;              // нормаль в world space (для совместимости)
+    vec3 FragPos;             // позиция фрагмента в world space
+    vec2 TexCoord;            // UV координаты
+    vec3 TangentViewPos;      // позиция камеры в tangent space
+    vec3 TangentFragPos;      // позиция фрагмента в tangent space
+} data;
+
+// позиции источников света, уже переведённые в tangent space
+out vec3 pLightPos[pnumber];
+out vec3 dLightDir[dnumber];
+out vec3 sLightDir[snumber];
+out vec3 sLightPos[snumber];
+
+// ===== СТРУКТУРЫ СВЕТА =====
 struct PointLight {
     vec3 position;
     vec3 color;
     float constant;
     float linear;
     float quadratic;
-
     float diffuse;
     float specular;
 };
-
-out struct Data {
-    mat4 model2;
-    vec3 normal;
-    vec3 FragPos;
-    vec2 TexCoord;
-    vec3 TangentViewPos;
-    vec3 TangentFragPos;
-} data;
-out vec3 pLightPos[pnumber];
-out vec3 dLightDir[dnumber];
-
-out vec3 sLightDir[snumber];
-out vec3 sLightPos[snumber];
 
 struct AmibentLight {
     vec3 color;
 };
 
-// sun
 struct DirectedLight {
     vec3 color;
     vec3 direction;
@@ -49,87 +62,101 @@ struct DirectedLight {
     float specular;
 };
 
-// flashlight
 struct SpotLight {
     vec3 position;
     vec3 direction;
     vec3 color;
     float cutOff;
     float outerCutOff;
-
     float constant;
     float linear;
     float quadratic;
-
     float ambient;
     float diffuse;
     float specular;
 };
+
+// ===== UNIFORMS =====
 uniform SpotLight sLights[snumber];
 uniform DirectedLight dLights[dnumber];
+uniform PointLight pLights[pnumber];
 uniform AmibentLight aLight;
-uniform int pLightNumber;
+
+uniform int pLightNum;
 uniform int sLightNum;
 uniform int dLightNum;
-uniform struct Material {
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
-    float shininess;
-} material;
-uniform int pLightNum;
-uniform PointLight pLights[pnumber];
+
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
-uniform vec3 viewPos;
+
+uniform vec3 viewPos; // позиция камеры в world space
+
 void main()
 {
+    // стандартное преобразование вершины в clip space
     gl_Position = projection * view * model * vec4(aPos, 1.0);
 
-    // world-space позиция фрагмента
+    // вычисляем позицию вершины (будущего фрагмента) в world space
     data.FragPos = vec3(model * vec4(aPos, 1.0));
+
+    // передаём UV координаты напрямую
     data.TexCoord = aTexCoord;
+
+    // сохраняем модельную матрицу (не используется напрямую)
     data.model2 = model;
 
-    // корректная матрица нормалей
+    // ===== КОРРЕКТНАЯ МАТРИЦА ДЛЯ НОРМАЛЕЙ =====
+    // inverse-transpose необходима, если в model есть scale / non-uniform scale
     mat3 normalMatrix = transpose(inverse(mat3(model)));
 
-    // нормаль, тангент, битангент в world space
+    // ===== ПЕРЕВОД ВЕКТОРОВ В WORLD SPACE =====
+
+    // нормаль вершины в world space
     vec3 N = normalize(normalMatrix * normalVec);
+
+    // tangent вершины в world space
     vec3 T = normalize(normalMatrix * aT);
 
-    // ортогонализация тангента
+    // ===== ОРТОГОНАЛИЗАЦИЯ T К N =====
+    // гарантируем, что T строго перпендикулярен N
     T = normalize(T - dot(T, N) * N);
 
-    // используем переданную битангенту, а не cross
+    // ===== BITANGENT =====
+    // восстанавливаем битангенту как cross(N, T)
+    // предполагается правосторонняя система координат
     vec3 B = normalize(cross(N, T));
 
-    // TBN: world -> tangent
+    // ===== TBN МАТРИЦА =====
+    // матрица преобразования из world space → tangent space
+    // transpose нужен, потому что хотим инверсию базиса
     mat3 TBN = transpose(mat3(T, B, N));
 
-    // сохраняем нормаль (для совместимости)
+    // сохраняем нормаль в world space (не используется в lighting с normal map)
     data.normal = N;
 
-    // point lights
+    // ===== ПЕРЕВОД ИСТОЧНИКОВ СВЕТА В TANGENT SPACE =====
+
+    // point lights: позиция относительно фрагмента
     for (int i = 0; i < pLightNum; i++) {
         pLightPos[i] = TBN * (pLights[i].position - data.FragPos);
     }
 
-    // directional lights
+    // directional lights: только направление
     for (int i = 0; i < dLightNum; i++) {
         dLightDir[i] = TBN * (-dLights[i].direction);
     }
 
-    // spot lights
+    // spot lights: позиция и направление
     for (int i = 0; i < sLightNum; i++) {
         sLightPos[i] = TBN * (sLights[i].position - data.FragPos);
         sLightDir[i] = TBN * (-sLights[i].direction);
     }
 
-    // позиция камеры в tangent space (ВАЖНО)
+    // ===== КАМЕРА В TANGENT SPACE =====
+    // позиция камеры относительно фрагмента
     data.TangentViewPos = TBN * (viewPos - data.FragPos);
 
-    // фрагмент в tangent space всегда (0,0,0), но оставляем переменную
+    // позиция фрагмента в tangent space всегда (0,0,0)
     data.TangentFragPos = vec3(0.0);
 }

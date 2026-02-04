@@ -1,18 +1,19 @@
 #version 320 es
-
 precision highp float;
 precision highp int;
 
-// max number of lights
+// количество источников света
 #define  snumber 1
 #define  dnumber 1
 #define  pnumber 1
 
 out vec4 FragColor;
 
-uniform sampler2D textureSamp;
-uniform sampler2D normalMap;
+// ===== ТЕКСТУРЫ =====
+uniform sampler2D textureSamp; // diffuse / albedo
+uniform sampler2D normalMap;   // normal map (tangent space)
 
+// ===== СТРУКТУРЫ СВЕТА =====
 struct PointLight {
     vec3 position;
     vec3 color;
@@ -48,6 +49,7 @@ struct SpotLight {
     float specular;
 };
 
+// ===== UNIFORMS =====
 uniform SpotLight sLights[snumber];
 uniform PointLight pLights[pnumber];
 uniform DirectedLight dLights[dnumber];
@@ -64,6 +66,7 @@ uniform struct Material {
     float shininess;
 } material;
 
+// ===== ВХОДНЫЕ ИНТЕРПОЛИРОВАННЫЕ ДАННЫЕ =====
 in struct Data {
     mat4 model2;
     vec3 normal;
@@ -80,29 +83,32 @@ in vec3 sLightPos[snumber];
 
 uniform int normalMapEnable;
 
-// -------------------------------------------------------------
-
+// ===== AMBIENT =====
 vec3 applyAmbient(vec3 color) {
+    // ambient освещение не зависит от направления
     return color * aLight.color;
 }
 
-// -------------------------------------------------------------
-// Blinn–Phong + suppression fixes
-
+// ===== DIRECTED LIGHT =====
 vec3 applyDirectedLight(vec3 color, vec3 normal, vec3 viewDir, int index)
 {
+    // направление света в tangent space
     vec3 lightDir = normalize(dLightDir[index]);
 
+    // diffuse = cos(theta)
     float diff = max(dot(normal, lightDir), 0.0);
 
+    // Blinn–Phong: half vector
     vec3 halfDir = normalize(lightDir + viewDir);
+
+    // specular компонент
     float spec = pow(max(dot(normal, halfDir), 0.0), material.shininess);
 
-    // CHANGE: suppress specular at grazing view angles
+    // подавляем specular под острым углом к камере
     float NdotV = max(dot(normal, viewDir), 0.0);
     spec *= smoothstep(0.0, 0.2, NdotV);
 
-    // CHANGE: suppress specular when light is almost parallel
+    // подавляем specular, если свет почти параллелен поверхности
     spec *= smoothstep(0.0, 0.2, diff);
 
     vec3 diffuse  = dLights[index].diffuse  * diff * material.diffuse;
@@ -111,8 +117,7 @@ vec3 applyDirectedLight(vec3 color, vec3 normal, vec3 viewDir, int index)
     return color * dLights[index].color * (diffuse + specular);
 }
 
-// -------------------------------------------------------------
-
+// ===== POINT LIGHT =====
 vec3 applyPointLight(vec3 color, int index, vec3 fragPos, vec3 normal, vec3 viewDir)
 {
     vec3 lightDir = normalize(pLightPos[index]);
@@ -124,9 +129,10 @@ vec3 applyPointLight(vec3 color, int index, vec3 fragPos, vec3 normal, vec3 view
 
     float NdotV = max(dot(normal, viewDir), 0.0);
     spec *= smoothstep(0.0, 0.2, NdotV);
-    spec *= smoothstep(0.0, 0.2, diff); // CHANGE
+    spec *= smoothstep(0.0, 0.2, diff);
 
     float distance = length(pLightPos[index]);
+
     float attenuation =
         1.0 / (pLights[index].constant +
                pLights[index].linear * distance +
@@ -138,8 +144,7 @@ vec3 applyPointLight(vec3 color, int index, vec3 fragPos, vec3 normal, vec3 view
     return color * pLights[index].color * (diffuse + specular) * attenuation;
 }
 
-// -------------------------------------------------------------
-
+// ===== SPOT LIGHT =====
 vec3 CalcSpotLight(vec3 color, SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir, int i)
 {
     vec3 lightDir = normalize(sLightPos[i]);
@@ -151,7 +156,7 @@ vec3 CalcSpotLight(vec3 color, SpotLight light, vec3 normal, vec3 fragPos, vec3 
 
     float NdotV = max(dot(normal, viewDir), 0.0);
     spec *= smoothstep(0.0, 0.2, NdotV);
-    spec *= smoothstep(0.0, 0.2, diff); // CHANGE
+    spec *= smoothstep(0.0, 0.2, diff);
 
     float distance = length(sLightPos[i]);
     float attenuation =
@@ -171,39 +176,46 @@ vec3 CalcSpotLight(vec3 color, SpotLight light, vec3 normal, vec3 fragPos, vec3 
            color * light.color * attenuation * intensity;
 }
 
-// -------------------------------------------------------------
-
+// ===== MAIN =====
 void main()
 {
+    // base color из diffuse текстуры
     vec3 color = texture(textureSamp, data.TexCoord).rgb;
 
-    // view direction in tangent space
-    vec3 viewDir = normalize(data.TangentViewPos);
+    // направление взгляда в tangent space
+    vec3 viewDir = normalize(data.TangentViewPos - data.TangentFragPos);
 
     vec3 norm;
     if (normalMapEnable == 1) {
+
+        // читаем нормаль из normal map (0..1 → -1..1)
         norm = texture(normalMap, data.TexCoord).rgb * 2.0 - 1.0;
 
-        // CHANGE: reconstruct Z to fix edge artifacts
+        // восстанавливаем Z, чтобы нормаль была единичной
         norm.z = sqrt(max(0.0, 1.0 - dot(norm.xy, norm.xy)));
 
-        // CHANGE: always renormalize (important with mipmaps)
+        // финальная нормализация
         norm = normalize(norm);
 
-        // if DirectX normal map:
+        // для DirectX normal maps:
         // norm.y = -norm.y;
     } else {
+        // fallback нормаль — строго вверх в tangent space
         norm = vec3(0.0, 0.0, 1.0);
     }
 
+    // начинаем с ambient освещения
     vec3 result = applyAmbient(color);
 
+    // добавляем directed lights
     for (int i = 0; i < dLightNum; i++)
         result += applyDirectedLight(color, norm, viewDir, i);
 
+    // добавляем point lights
     for (int i = 0; i < pLightNum; i++)
         result += applyPointLight(color, i, vec3(0.0), norm, viewDir);
 
+    // добавляем spot lights
     for (int i = 0; i < sLightNum; i++)
         result += CalcSpotLight(color, sLights[i], norm, vec3(0.0), viewDir, i);
 

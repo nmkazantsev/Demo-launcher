@@ -60,7 +60,7 @@ public class MainRenderer extends GamePageClass {
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         shape = new Shape("/sphere/sphere.obj", "/sphere/color.png", this, this.getClass());
-        shape.addNormalMap("/sphere/normal.png");
+        //shape.addNormalMap("/sphere/normal.png");
 
         skyBox = new SkyBox("/skybox/", "jpg", this);
 
@@ -134,7 +134,7 @@ public class MainRenderer extends GamePageClass {
         material.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
-        Matrix.rotateM(matrix, 0, engine.pageMillis() / 50.0f, 0, 1, 1);
+        Matrix.rotateM(matrix, 0, (engine.pageMillis()+15000) / 50.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
         fb.connectDefaultFrameBuffer();
