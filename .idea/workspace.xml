@@ -16,19 +16,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="a bit improove normal map">
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fixed normal interpolation">
+      <change afterPath="$PROJECT_DIR$/game/src/main/resources/ponchik/albedo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game/src/main/resources/ponchik/ponchik.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/shape/fragment_shader_light.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/resources/shape/vertex_shader_light.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/shape/vertex_shader_light.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/resources/sphere/normal.png" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/resources/sphere/normal.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/frameBuffers/FrameBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/frameBuffers/FrameBuffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/shaders/default_adaptors/LightShaderAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/shaders/default_adaptors/LightShaderAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/shaders/default_adaptors/MainShaderAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/shaders/default_adaptors/MainShaderAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Face.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Face.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/vertices/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/maths/PVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/maths/PVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +61,7 @@
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sealEngine_3M" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -109,9 +102,9 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "6-адаптация-на-десктоп",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo/game/src/main/resources/sphere",
+    "last_opened_file_path": "/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo/game/src/main/resources/ponchik",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -129,6 +122,7 @@
       <recent name="com.example.myapplication" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/game/src/main/resources/ponchik" />
       <recent name="$PROJECT_DIR$/game/src/main/resources/sphere" />
       <recent name="$PROJECT_DIR$/game/src/main/resources/tank" />
       <recent name="$PROJECT_DIR$/game/src/main/resources" />
@@ -245,7 +239,8 @@
       <workItem from="1770150342065" duration="394000" />
       <workItem from="1770191699611" duration="9243000" />
       <workItem from="1770203676645" duration="5187000" />
-      <workItem from="1770219108749" duration="1877000" />
+      <workItem from="1770219108749" duration="2588000" />
+      <workItem from="1770224773860" duration="2816000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -303,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770206359630</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fixed normal interpolation">
+      <option name="closed" value="true" />
+      <created>1770221080209</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770221080209</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,7 +334,8 @@
     <MESSAGE value="pc light works" />
     <MESSAGE value="new shaders from chat gpt" />
     <MESSAGE value="a bit improove normal map" />
-    <option name="LAST_COMMIT_MESSAGE" value="a bit improove normal map" />
+    <MESSAGE value="fixed normal interpolation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed normal interpolation" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">

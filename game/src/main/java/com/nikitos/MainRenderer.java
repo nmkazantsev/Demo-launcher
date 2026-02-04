@@ -59,8 +59,8 @@ public class MainRenderer extends GamePageClass {
         matrix = Matrix.resetTranslateMatrix(matrix);
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
-        shape = new Shape("/sphere/sphere.obj", "/sphere/color.png", this, this.getClass());
-        //shape.addNormalMap("/sphere/normal.png");
+        shape = new Shape("/ponchik/ponchik.obj", "/ponchik/albedo.png", this, this.getClass());
+        shape.addNormalMap("/ponchik /normal.png");
 
         skyBox = new SkyBox("/skybox/", "jpg", this);
 
@@ -79,9 +79,9 @@ public class MainRenderer extends GamePageClass {
 
         directedLight1 = new DirectedLight(this);
         directedLight1.direction =PVector.normalize( new PVector(-1, 0, -1));
-        directedLight1.color = new PVector(0.9f);
-        directedLight1.diffuse = 0.2f;
-        directedLight1.specular = 0.8f;
+        directedLight1.color = new PVector(1f);
+        directedLight1.diffuse = 0.6f;
+        directedLight1.specular = 1.8f;
 
        /* directedLight2 = new DirectedLight(this);
         directedLight2.direction = new Vec3(0, 1, 0);
@@ -103,10 +103,10 @@ public class MainRenderer extends GamePageClass {
         sourceLight.cutOff = cos(radians(30f));*/
 
         material = new Material(this);
-        material.ambient = new PVector(0.05f);
-        material.specular = new PVector(1);
-        material.diffuse = new PVector(0.25f);
-        material.shininess = 32f;
+        material.ambient  = new PVector(0.08f);
+        material.diffuse  = new PVector(0.6f);
+        material.specular = new PVector(0.15f);
+        material.shininess = 16f;
 
 
     }
@@ -125,7 +125,7 @@ public class MainRenderer extends GamePageClass {
         skyBoxShader.apply();
 
         camera.resetFor3d();
-        camera.cameraSettings.eyeZ = 2;
+        camera.cameraSettings.eyeZ = 4;
         camera.apply();
 
         skyBox.prepareAndDraw();
