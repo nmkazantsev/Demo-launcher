@@ -60,7 +60,7 @@ public class MainRenderer extends GamePageClass {
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         shape = new Shape("/ponchik/ponchik.obj", "/ponchik/albedo.png", this, this.getClass());
-        shape.addNormalMap("/ponchik /normal.png");
+        shape.addNormalMap("/ponchik/normal.png");
 
         skyBox = new SkyBox("/skybox/", "jpg", this);
 

@@ -16,13 +16,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fixed normal interpolation">
-      <change afterPath="$PROJECT_DIR$/game/src/main/resources/ponchik/albedo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game/src/main/resources/ponchik/ponchik.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" afterDir="false" />
-    </list>
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="beautifull ponchik" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,7 +234,7 @@
       <workItem from="1770191699611" duration="9243000" />
       <workItem from="1770203676645" duration="5187000" />
       <workItem from="1770219108749" duration="2588000" />
-      <workItem from="1770224773860" duration="2816000" />
+      <workItem from="1770224773860" duration="3131000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -306,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770221080209</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="beautifull ponchik">
+      <option name="closed" value="true" />
+      <created>1770228867210</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1770228867210</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +337,8 @@
     <MESSAGE value="new shaders from chat gpt" />
     <MESSAGE value="a bit improove normal map" />
     <MESSAGE value="fixed normal interpolation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed normal interpolation" />
+    <MESSAGE value="beautifull ponchik" />
+    <option name="LAST_COMMIT_MESSAGE" value="beautifull ponchik" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
