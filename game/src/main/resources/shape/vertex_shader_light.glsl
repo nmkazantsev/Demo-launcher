@@ -1,6 +1,6 @@
 #version 320 es
-precision mediump float;
-precision mediump int;
+precision highp float;
+precision highp int;
 
 #define  snumber 1//spot number
 #define  dnumber 1//direct number
