@@ -85,27 +85,51 @@ uniform mat4 projection;
 uniform vec3 viewPos;
 void main()
 {
-    gl_Position = projection * view * model * vec4(aPos, 1.0f);
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+
+    // world-space позиция фрагмента
     data.FragPos = vec3(model * vec4(aPos, 1.0));
-    data.TexCoord = vec2(aTexCoord.x, aTexCoord.y);
-    data.normal = normalize(normalVec);
+    data.TexCoord = aTexCoord;
     data.model2 = model;
+
+    // корректная матрица нормалей
     mat3 normalMatrix = transpose(inverse(mat3(model)));
+
+    // нормаль, тангент, битангент в world space
+    vec3 N = normalize(normalMatrix * normalVec);
     vec3 T = normalize(normalMatrix * aT);
-    vec3 N = normalize(normalMatrix * data.normal);
+
+    // ортогонализация тангента
     T = normalize(T - dot(T, N) * N);
-    vec3 B = cross(N, T);
+
+    // используем переданную битангенту, а не cross
+    vec3 B = normalize(cross(N, T));
+
+    // TBN: world -> tangent
     mat3 TBN = transpose(mat3(T, B, N));
-    for (int i = 0;i < pLightNum; i++) {
+
+    // сохраняем нормаль (для совместимости)
+    data.normal = N;
+
+    // point lights
+    for (int i = 0; i < pLightNum; i++) {
         pLightPos[i] = TBN * (pLights[i].position - data.FragPos);
     }
-    for (int i = 0;i < dLightNum; i++) {
+
+    // directional lights
+    for (int i = 0; i < dLightNum; i++) {
         dLightDir[i] = TBN * (-dLights[i].direction);
     }
-    for (int i = 0;i < sLightNum; i++) {
-        sLightDir[i] = TBN * sLights[i].direction;
+
+    // spot lights
+    for (int i = 0; i < sLightNum; i++) {
         sLightPos[i] = TBN * (sLights[i].position - data.FragPos);
+        sLightDir[i] = TBN * (-sLights[i].direction);
     }
-    data.TangentViewPos = TBN * viewPos;
-    data.TangentFragPos = TBN * vec3(model * vec4(aPos, 1.0));
+
+    // позиция камеры в tangent space (ВАЖНО)
+    data.TangentViewPos = TBN * (viewPos - data.FragPos);
+
+    // фрагмент в tangent space всегда (0,0,0), но оставляем переменную
+    data.TangentFragPos = vec3(0.0);
 }

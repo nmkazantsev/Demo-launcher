@@ -1,12 +1,5 @@
 package com.nikitos;
 
-import static com.nikitos.utils.Utils.cos;
-import static com.nikitos.utils.Utils.kx;
-import static com.nikitos.utils.Utils.ky;
-import static com.nikitos.utils.Utils.radians;
-import static com.nikitos.utils.Utils.x;
-import static com.nikitos.utils.Utils.y;
-
 import com.nikitos.main.camera.Camera;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PImage;
@@ -28,6 +21,8 @@ import com.nikitos.utils.Utils;
 
 import java.util.List;
 
+import static com.nikitos.utils.Utils.*;
+
 
 public class MainRenderer extends GamePageClass {
     private final Engine engine;
@@ -46,7 +41,7 @@ public class MainRenderer extends GamePageClass {
 
     private FrameBuffer fb;
 
-    private final SourceLight sourceLight;
+   // private final SourceLight sourceLight;
     private final AmbientLight ambientLight;
     private final DirectedLight directedLight1;
     private final Material material;
@@ -65,7 +60,7 @@ public class MainRenderer extends GamePageClass {
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         shape = new Shape("/shape/ponchik.obj", "/shape/texture.png", this, this.getClass());
-        shape.addNormalMap("/shape/normal_tex_smooth.png");
+        shape.addNormalMap("/shape/normal_tex.png");
 
         skyBox = new SkyBox("/skybox/", "jpg", this);
 
@@ -80,13 +75,14 @@ public class MainRenderer extends GamePageClass {
                 this, new LightShaderAdaptor());
 
         ambientLight = new AmbientLight(this);
-        // ambientLight.color = new Vec3(0.3f, 0.3f, 0.3f);
+        ambientLight.color = new PVector(0.3f, 0.3f, 0.3f);
 
         directedLight1 = new DirectedLight(this);
         directedLight1.direction = new PVector(-1, 0, 0);
         directedLight1.color = new PVector(0.9f);
         directedLight1.diffuse = 0.2f;
         directedLight1.specular = 0.8f;
+
        /* directedLight2 = new DirectedLight(this);
         directedLight2.direction = new Vec3(0, 1, 0);
         directedLight2.color = new Vec3(0.6f);
@@ -94,7 +90,7 @@ public class MainRenderer extends GamePageClass {
         directedLight2.specular = 0.8f;
 
         */
-        sourceLight = new SourceLight(this);
+        /*sourceLight = new SourceLight(this);
         sourceLight.diffuse = 0.8f;
         sourceLight.specular = 0.9f;
         sourceLight.constant = 1f;
@@ -104,7 +100,7 @@ public class MainRenderer extends GamePageClass {
         sourceLight.position = new PVector(0f, 0, 4);
         sourceLight.direction = new PVector(-0.3f, 0, -1);
         sourceLight.outerCutOff = cos(radians(40));
-        sourceLight.cutOff = cos(radians(30f));
+        sourceLight.cutOff = cos(radians(30f));*/
 
         material = new Material(this);
         material.ambient = new PVector(1);

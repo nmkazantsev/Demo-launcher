@@ -91,73 +91,84 @@ vec3 applyDirectedLight(vec3 color, vec3 normal, vec3 viewDir, int index) {
 }
 
 
-vec3 applyPointLight(vec3 color, int index, vec3 fragPos, vec3 normal, vec3 viewDir) {
-    vec3 lightDir = normalize(pLightPos[index] - fragPos);
-    // diffuse shading
+vec3 applyPointLight(vec3 color, int index, vec3 fragPos, vec3 normal, vec3 viewDir)
+{
+    vec3 lightDir = normalize(pLightPos[index]);
+
     float diff = max(dot(normal, lightDir), 0.0);
-    // specular shading
+
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    // attenuation
-    float distance = length(pLightPos[index] - fragPos);
-    float attenuation = 1.0 / (pLights[index].constant + pLights[index].linear * distance +
-    pLights[index].quadratic * (distance * distance));
-    // combine results
+
+    float distance = length(pLightPos[index]);
+    float attenuation = 1.0 / (pLights[index].constant +
+                               pLights[index].linear * distance +
+                               pLights[index].quadratic * (distance * distance));
+
     vec3 diffuse = pLights[index].diffuse * diff * material.diffuse;
     vec3 specular = pLights[index].specular * spec * material.specular;
-    diffuse *= attenuation;
-    specular *= attenuation;
-    return color *pLights[index].color* (diffuse + specular);
+
+    return color * pLights[index].color * (diffuse + specular) * attenuation;
 }
 // calculates the color when using a spot light.
 vec3 CalcSpotLight(vec3 color, SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir, int i)
 {
-    vec3 lightDir = normalize(sLightPos[i] - fragPos);
-    // diffuse shading
+    vec3 lightDir = normalize(sLightPos[i]);
+
     float diff = max(dot(normal, lightDir), 0.0);
-    // specular shading
+
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    // attenuation
-    float distance = length(sLightPos[i] - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
-    // spotlight intensity
+
+    float distance = length(sLightPos[i]);
+    float attenuation = 1.0 / (light.constant +
+                               light.linear * distance +
+                               light.quadratic * (distance * distance));
+
     float theta = dot(lightDir, normalize(-sLightDir[i]));
     float epsilon = light.cutOff - light.outerCutOff;
     float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
-    // combine results
+
     vec3 ambient = light.ambient * material.diffuse;
     vec3 diffuse = light.diffuse * diff * material.diffuse;
     vec3 specular = light.specular * spec * material.specular;
-    ambient *= attenuation * intensity;
-    diffuse *= attenuation * intensity;
-    specular *= attenuation * intensity;
-    return (ambient + diffuse + specular)*color*light.color;
+
+    return (ambient + diffuse + specular) *
+           color * light.color * attenuation * intensity;
 }
+
 
 uniform int normalMapEnable;
 void main()
 {
     vec3 color = texture(textureSamp, data.TexCoord).rgb;
-    vec3 viewDir = normalize(data.TangentViewPos - data.TangentFragPos);
+
+    // view direction в tangent space
+    vec3 viewDir = normalize(data.TangentViewPos);
+
+    // normal из normal map
     vec3 norm;
     if (normalMapEnable == 1) {
-        norm = normalize(texture(normalMap, data.TexCoord).rgb* 2.0 - 1.0);// god bless, everything is NORM
-        //norm.y = -norm.y;
+        norm = normalize(texture(normalMap, data.TexCoord).rgb * 2.0 - 1.0);
+        // если normal map из DirectX:
+        // norm.y = -norm.y;
     } else {
         norm = vec3(0.0, 0.0, 1.0);
     }
+
     vec3 result = applyAmbient(color);
 
     for (int i = 0; i < dLightNum; i++) {
         result += applyDirectedLight(color, norm, viewDir, i);
     }
-    for (int i = 0;i < pLightNum; i++) {
-        result += applyPointLight(color, i, data.TangentFragPos, norm, viewDir);
-    }
-    for (int i = 0;i < sLightNum; i++) {
-        result += CalcSpotLight(color, sLights[i], norm, data.TangentFragPos, viewDir, i);
+
+    for (int i = 0; i < pLightNum; i++) {
+        result += applyPointLight(color, i, vec3(0.0), norm, viewDir);
     }
 
-    FragColor = vec4(result, 0.0);
+    for (int i = 0; i < sLightNum; i++) {
+        result += CalcSpotLight(color, sLights[i], norm, vec3(0.0), viewDir, i);
+    }
+
+    FragColor = vec4(result, 1.0);
 }
