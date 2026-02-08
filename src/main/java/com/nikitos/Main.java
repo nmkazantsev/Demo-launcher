@@ -7,9 +7,10 @@ import com.nikitos.platformBridge.LauncherParams;
 
 public class Main {
     public static void main(String[] args) {
-        LauncherParams launcherParams = new LauncherParams();
-        launcherParams.setFullScreen(true);
-        launcherParams.setStartPage(unused -> new MainRenderer());
+        LauncherParams launcherParams = new LauncherParams()
+                .setFullScreen(true)
+                .setDebug(true)
+                .setStartPage(unused -> new MainRenderer());
         DesktopLauncher desktopLauncher = new DesktopLauncher(launcherParams);
         desktopLauncher.run();
     }
