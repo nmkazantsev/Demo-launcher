@@ -1,12 +1,13 @@
 package com.nikitos;
 
 import com.nikitos.main.camera.Camera;
+import com.nikitos.main.debugger.DebugValueFloat;
+import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PImage;
 import com.nikitos.main.light.AmbientLight;
 import com.nikitos.main.light.DirectedLight;
 import com.nikitos.main.light.Material;
-import com.nikitos.main.light.SourceLight;
 import com.nikitos.main.shaders.Shader;
 import com.nikitos.main.shaders.default_adaptors.LightShaderAdaptor;
 import com.nikitos.main.shaders.default_adaptors.MainShaderAdaptor;
@@ -41,12 +42,15 @@ public class MainRenderer extends GamePageClass {
 
     private FrameBuffer fb;
 
-   // private final SourceLight sourceLight;
+    // private final SourceLight sourceLight;
     private final AmbientLight ambientLight;
     private final DirectedLight directedLight1;
     private final Material material;
 
+    private DebugValueFloat camPos = Debugger.addDebugValueFloat(1, 5, "cam poz z");
+
     public MainRenderer() {
+        camPos.value = 3;
         engine = CoreRenderer.engine;
         pb = engine.getPlatformBridge();
         pb.log_i("main_renderer", "created main renderer");
@@ -78,7 +82,7 @@ public class MainRenderer extends GamePageClass {
         ambientLight.color = new PVector(0.3f, 0.3f, 0.3f);
 
         directedLight1 = new DirectedLight(this);
-        directedLight1.direction =PVector.normalize( new PVector(-1, 0, -1));
+        directedLight1.direction = PVector.normalize(new PVector(-1, 0, -1));
         directedLight1.color = new PVector(1f);
         directedLight1.diffuse = 0.6f;
         directedLight1.specular = 1.8f;
@@ -103,8 +107,8 @@ public class MainRenderer extends GamePageClass {
         sourceLight.cutOff = cos(radians(30f));*/
 
         material = new Material(this);
-        material.ambient  = new PVector(0.08f);
-        material.diffuse  = new PVector(0.6f);
+        material.ambient = new PVector(0.08f);
+        material.diffuse = new PVector(0.6f);
         material.specular = new PVector(0.15f);
         material.shininess = 16f;
 
@@ -125,7 +129,7 @@ public class MainRenderer extends GamePageClass {
         skyBoxShader.apply();
 
         camera.resetFor3d();
-        camera.cameraSettings.eyeZ = 4;
+        camera.cameraSettings.eyeZ = camPos.value;
         camera.apply();
 
         skyBox.prepareAndDraw();
@@ -134,7 +138,7 @@ public class MainRenderer extends GamePageClass {
         material.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
-        Matrix.rotateM(matrix, 0, (engine.pageMillis()+15000) / 50.0f, 0, 1, 1);
+        Matrix.rotateM(matrix, 0, (engine.pageMillis() + 15000) / 50.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
         fb.connectDefaultFrameBuffer();
