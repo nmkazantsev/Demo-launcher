@@ -82,6 +82,7 @@ in vec3 sLightDir[snumber];
 in vec3 sLightPos[snumber];
 
 uniform int normalMapEnable;
+uniform int materialsMapEnable;
 
 // ===== AMBIENT =====
 vec3 applyAmbient(vec3 color) {
