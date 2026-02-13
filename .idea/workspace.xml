@@ -16,12 +16,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="speed up textures">
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="delete switch">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/CoreRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/CoreRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/main/images/PImageDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/main/images/PImageDesktop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,10 +60,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="master" />
         <entry key="$PROJECT_DIR$/../sealEngine_3M" value="8-обработка-тача" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sealEngine_3M" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -107,7 +105,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "8-обработка-тача",
+    "git-widget-placeholder": "98e808b5",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo/game/src/main/resources/ponchik",
     "node.js.detected.package.eslint": "true",
@@ -209,6 +207,8 @@
         <item itemvalue="Gradle.Demo [shadowJar]" />
         <item itemvalue="Gradle.Demo [jar]" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.Demo [shadowJar]" />
+        <item itemvalue="Gradle.Demo [jar]" />
       </list>
     </recent_temporary>
   </component>
@@ -249,7 +249,8 @@
       <workItem from="1770302775726" duration="1413000" />
       <workItem from="1770481170850" duration="3929000" />
       <workItem from="1770553632057" duration="196000" />
-      <workItem from="1770617538808" duration="708000" />
+      <workItem from="1770617538808" duration="1446000" />
+      <workItem from="1770620255992" duration="315000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -331,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770485985360</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="delete switch">
+      <option name="closed" value="true" />
+      <created>1770618264793</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1770618264793</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +371,8 @@
     <MESSAGE value="fixed normal interpolation" />
     <MESSAGE value="beautifull ponchik" />
     <MESSAGE value="speed up textures" />
-    <option name="LAST_COMMIT_MESSAGE" value="speed up textures" />
+    <MESSAGE value="delete switch" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete switch" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">

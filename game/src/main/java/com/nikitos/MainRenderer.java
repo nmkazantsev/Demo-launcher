@@ -127,7 +127,6 @@ public class MainRenderer extends GamePageClass {
         Utils.background(255, 255, 255);
         fb.apply();
         skyBoxShader.apply();
-
         camera.resetFor3d();
         camera.cameraSettings.eyeZ = camPos.value;
         camera.apply();
