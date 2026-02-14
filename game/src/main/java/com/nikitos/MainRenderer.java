@@ -1,8 +1,8 @@
 package com.nikitos;
 
 import com.nikitos.main.camera.Camera;
-import com.nikitos.main.debugger.DebugValueFloat;
 import com.nikitos.main.debugger.Debugger;
+import com.nikitos.main.debugger.DebugValueFloat;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PImage;
 import com.nikitos.main.light.AmbientLight;
