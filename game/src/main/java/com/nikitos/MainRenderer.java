@@ -1,8 +1,8 @@
 package com.nikitos;
 
 import com.nikitos.main.camera.Camera;
-import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.debugger.DebugValueFloat;
+import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PImage;
 import com.nikitos.main.light.AmbientLight;
@@ -11,6 +11,7 @@ import com.nikitos.main.light.Material;
 import com.nikitos.main.shaders.Shader;
 import com.nikitos.main.shaders.default_adaptors.LightShaderAdaptor;
 import com.nikitos.main.shaders.default_adaptors.MainShaderAdaptor;
+import com.nikitos.main.shaders.default_adaptors.SkyBoxShaderAdaptor;
 import com.nikitos.main.vertices.Shape;
 import com.nikitos.main.vertices.SimplePolygon;
 import com.nikitos.main.vertices.SkyBox;
@@ -71,7 +72,7 @@ public class MainRenderer extends GamePageClass {
         skyBoxShader = new Shader(
                 fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_vertex.glsl"),
                 fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_fragment.glsl"),
-                this, new MainShaderAdaptor());
+                this, new SkyBoxShaderAdaptor());
 
         lightShader = new Shader(
                 fileUtils.readFileFromAssets(this.getClass(), "/shape/vertex_shader_light.glsl"),
