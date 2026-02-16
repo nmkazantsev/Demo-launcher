@@ -119,7 +119,7 @@ public class MainRenderer extends GamePageClass {
     @Override
     public void onSurfaceChanged(int x, int y) {
         fb = new FrameBuffer(x, y, this);
-        camera = new Camera(x, Utils.y);
+        camera = new Camera(x, Utils.getY());
         camera.resetFor2d();
     }
 
@@ -149,8 +149,8 @@ public class MainRenderer extends GamePageClass {
         camera.apply();
         matrix = Matrix.resetTranslateMatrix(matrix);
         Matrix.applyMatrix(matrix);
-        fb.drawTexture(new PVector(0, 0, 1), new PVector(x, 0, 1), new PVector(0, y, 1));
-        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * kx, (engine.pageMillis() / 100.0f + 100.0f) * ky, 30 * kx, 1.1f);
+        fb.drawTexture(new PVector(0, 0, 1), new PVector(Utils.getX(), 0, 1), new PVector(0, Utils.getY(), 1));
+        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 30 * Utils.getKx(), 1.1f);
     }
 
     @Override
