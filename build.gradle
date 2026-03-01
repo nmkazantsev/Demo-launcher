@@ -24,6 +24,10 @@ test {
 
 
 tasks.shadowJar {
+    //для skija
+    manifest {
+        attributes 'Multi-Release': 'true'
+    }
     archiveBaseName.set('demo-app')
     archiveVersion.set('1.0.0')
     archiveClassifier.set('')
@@ -31,4 +35,5 @@ tasks.shadowJar {
 
 application {
     mainClass = 'com.nikitos.Main'
+    applicationDefaultJvmArgs = ['--add-opens', 'java.base/sun.misc=ALL-UNNAMED']
 }

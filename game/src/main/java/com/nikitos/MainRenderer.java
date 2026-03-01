@@ -51,8 +51,12 @@ public class MainRenderer extends GamePageClass {
     private DebugValueFloat camPos = Debugger.addDebugValueFloat(1, 5, "cam poz z");
 
     public MainRenderer() {
+        System.out.println("Java home: " + System.getProperty("java.home"));
+        String version = System.getProperty("java.version");
         camPos.value = 3;
         engine = CoreRenderer.engine;
+        engine.getPlatformBridge().log_i("Main renderer", "Main renderer is running at java "+version);
+
         pb = engine.getPlatformBridge();
         pb.log_i("main_renderer", "created main renderer");
         FileUtils fileUtils = new FileUtils();
