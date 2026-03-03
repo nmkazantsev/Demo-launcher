@@ -16,21 +16,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="delete switch">
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinNotebook.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/publish/publish.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fix build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/ImgBridgeDesktop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/ImgBridgeDesktop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +286,7 @@
       <workItem from="1771244749832" duration="599000" />
       <workItem from="1771845602389" duration="17000" />
       <workItem from="1772265223083" duration="9348000" />
-      <workItem from="1772351099938" duration="652000" />
+      <workItem from="1772351099938" duration="1807000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
@@ -388,7 +376,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770618264793</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix build">
+      <option name="closed" value="true" />
+      <created>1772352084479</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1772352084479</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +416,8 @@
     <MESSAGE value="beautifull ponchik" />
     <MESSAGE value="speed up textures" />
     <MESSAGE value="delete switch" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete switch" />
+    <MESSAGE value="fix build" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix build" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
