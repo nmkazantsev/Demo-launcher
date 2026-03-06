@@ -17,16 +17,16 @@ import com.nikitos.main.vertices.SimplePolygon;
 import com.nikitos.main.vertices.SkyBox;
 import com.nikitos.maths.Matrix;
 import com.nikitos.maths.PVector;
+import com.nikitos.platformBridge.ErrorPrinter;
 import com.nikitos.platformBridge.PlatformBridge;
 import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
 
 import java.util.List;
 
-import static com.nikitos.utils.Utils.*;
-
 
 public class MainRenderer extends GamePageClass {
+    private final ErrorPrinter errorPrinter;
     private final Engine engine;
     private final Shader shader, lightShader;
     private final PlatformBridge pb;
@@ -55,7 +55,8 @@ public class MainRenderer extends GamePageClass {
         String version = System.getProperty("java.version");
         camPos.value = 3;
         engine = CoreRenderer.engine;
-        engine.getPlatformBridge().log_i("Main renderer", "Main renderer is running at java "+version);
+        engine.getPlatformBridge().log_i("Main renderer", "Main renderer is running at java " + version);
+        errorPrinter = engine.getPlatformBridge().getErrorPrinter();
 
         pb = engine.getPlatformBridge();
         pb.log_i("main_renderer", "created main renderer");
@@ -130,9 +131,11 @@ public class MainRenderer extends GamePageClass {
     @Override
     public void draw() {
         Utils.background(255, 255, 255);
+        errorPrinter.checkGLErrors("after reset");
+        //errorPrinter.printOpenGLState();
         fb.apply();
         skyBoxShader.apply();
-
+        //shader.apply();
         camera.resetFor3d();
         camera.cameraSettings.eyeZ = camPos.value;
         camera.apply();
