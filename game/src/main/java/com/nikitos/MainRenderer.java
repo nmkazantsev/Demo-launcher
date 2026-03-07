@@ -157,9 +157,11 @@ public class MainRenderer extends GamePageClass {
         matrix = Matrix.resetTranslateMatrix(matrix);
         Matrix.applyMatrix(matrix);
         //for (int i = 0; i < 1000; i++) {
-            fb.drawTexture(new PVector(0, 0, 1), new PVector(Utils.getX(), 0, 1), new PVector(0, Utils.getY(), 1));
-       // }
-        simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 30 * Utils.getKx(), 1.1f);
+        fb.drawTexture(new PVector(0, 0, 1), new PVector(Utils.getX(), 0, 1), new PVector(0, Utils.getY(), 1));
+        // }
+        if(Utils.millis()%1000>500) {
+            simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 30 * Utils.getKx(), 1.1f);
+        }
     }
 
     @Override
