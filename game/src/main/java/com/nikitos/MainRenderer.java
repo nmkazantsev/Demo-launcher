@@ -12,11 +12,13 @@ import com.nikitos.main.shaders.Shader;
 import com.nikitos.main.shaders.default_adaptors.LightShaderAdaptor;
 import com.nikitos.main.shaders.default_adaptors.MainShaderAdaptor;
 import com.nikitos.main.shaders.default_adaptors.SkyBoxShaderAdaptor;
+import com.nikitos.main.touch.TouchProcessor;
 import com.nikitos.main.vertices.Shape;
 import com.nikitos.main.vertices.SimplePolygon;
 import com.nikitos.main.vertices.SkyBox;
 import com.nikitos.maths.Matrix;
 import com.nikitos.maths.PVector;
+import com.nikitos.maths.Vec3;
 import com.nikitos.platformBridge.ErrorPrinter;
 import com.nikitos.platformBridge.PlatformBridge;
 import com.nikitos.utils.FileUtils;
@@ -35,7 +37,7 @@ public class MainRenderer extends GamePageClass {
 
     private Camera camera;
 
-    private final SimplePolygon simplePolygon;
+    private final SimplePolygon simplePolygon, one, two;
     private final Shape shape;
 
     private final SkyBox skyBox;
@@ -49,6 +51,9 @@ public class MainRenderer extends GamePageClass {
     private final Material material;
 
     private DebugValueFloat camPos = Debugger.addDebugValueFloat(1, 5, "cam poz z");
+
+    private final TouchProcessor onetp, twotp;
+    private Vec3 one_pos = null, two_pos = null;
 
     public MainRenderer() {
         System.out.println("Java home: " + System.getProperty("java.home"));
@@ -69,6 +74,9 @@ public class MainRenderer extends GamePageClass {
         matrix = Matrix.resetTranslateMatrix(matrix);
 
         simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
+        one = new SimplePolygon(this::redraw, true, 0, this);
+        two = new SimplePolygon(this::redraw, true, 0, this);
+
         shape = new Shape("/ponchik/ponchik.obj", "/ponchik/albedo.png", this, this.getClass());
         shape.addNormalMap("/ponchik/normal.png");
 
@@ -118,6 +126,27 @@ public class MainRenderer extends GamePageClass {
         material.specular = new PVector(0.15f);
         material.shininess = 16f;
 
+        onetp = new TouchProcessor(
+                TouchPoint -> (TouchPoint.touchX < 500 * Utils.getKx() && TouchPoint.touchY < 500 * Utils.getKy()),
+                null, TouchPoint -> {
+            one_pos = new Vec3(TouchPoint.touchX, TouchPoint.touchY);
+            return null;
+        }, TouchPoint -> {
+            one_pos = null;
+            return null;
+        }, null
+        );
+
+        twotp = new TouchProcessor(
+                TouchPoint -> (TouchPoint.touchX >Utils.getX() - 500 * Utils.getKx() && TouchPoint.touchY > Utils.getY() - 500 * Utils.getKy()),
+                null, TouchPoint -> {
+            two_pos = new Vec3(TouchPoint.touchX, TouchPoint.touchY);
+            return null;
+        }, TouchPoint -> {
+            two_pos = null;
+            return null;
+        }, null
+        );
 
     }
 
@@ -159,8 +188,14 @@ public class MainRenderer extends GamePageClass {
         //for (int i = 0; i < 1000; i++) {
         fb.drawTexture(new PVector(0, 0, 1), new PVector(Utils.getX(), 0, 1), new PVector(0, Utils.getY(), 1));
         // }
-        if(Utils.millis()%1000>500) {
+        if (Utils.millis() % 1000 > 500) {
             simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 30 * Utils.getKx(), 1.1f);
+        }
+        if(one_pos!=null){
+            one.prepareAndDraw(one_pos.x, one_pos.y,100*Utils.getKx(), 2);
+        }
+        if(two_pos!=null){
+            two.prepareAndDraw(two_pos.x, two_pos.y,100*Utils.getKx(), 2);
         }
     }
 
