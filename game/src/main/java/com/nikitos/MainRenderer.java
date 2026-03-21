@@ -58,7 +58,7 @@ public class MainRenderer extends GamePageClass {
 
     public MainRenderer() {
         AudioPlayer audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
-        audioPlayer.playMusic("test.mp3", false);
+       // audioPlayer.playMusic("test.mp3", false);
 
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
