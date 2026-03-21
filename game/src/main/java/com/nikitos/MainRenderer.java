@@ -67,8 +67,8 @@ public class MainRenderer extends GamePageClass {
         pb.log_i("main_renderer", "created main renderer");
         FileUtils fileUtils = new FileUtils();
         shader = new Shader(
-                fileUtils.readFileFromAssets(this.getClass(), "/vertex_shader.glsl"),
-                fileUtils.readFileFromAssets(this.getClass(), "/fragment_shader.glsl"),
+                "vertex_shader.glsl",
+                "fragment_shader.glsl",
                 this, new MainShaderAdaptor());
 
         matrix = Matrix.resetTranslateMatrix(matrix);
@@ -77,19 +77,19 @@ public class MainRenderer extends GamePageClass {
         one = new SimplePolygon(this::redraw, true, 0, this);
         two = new SimplePolygon(this::redraw, true, 0, this);
 
-        shape = new Shape("/ponchik/ponchik.obj", "/ponchik/albedo.png", this, this.getClass());
-        shape.addNormalMap("/ponchik/normal.png");
+        shape = new Shape("ponchik/ponchik.obj", "ponchik/albedo.png", this);
+        shape.addNormalMap("ponchik/normal.png");
 
-        skyBox = new SkyBox("/skybox/", "jpg", this);
+        skyBox = new SkyBox("skybox/", "jpg", this);
 
         skyBoxShader = new Shader(
-                fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_vertex.glsl"),
-                fileUtils.readFileFromAssets(this.getClass(), "/skybox/skybox_fragment.glsl"),
+               "skybox/skybox_vertex.glsl",
+                "skybox/skybox_fragment.glsl",
                 this, new SkyBoxShaderAdaptor());
 
         lightShader = new Shader(
-                fileUtils.readFileFromAssets(this.getClass(), "/shape/vertex_shader_light.glsl"),
-                fileUtils.readFileFromAssets(this.getClass(), "/shape/fragment_shader_light.glsl"),
+                "shape/vertex_shader_light.glsl",
+                 "shape/fragment_shader_light.glsl",
                 this, new LightShaderAdaptor());
 
         ambientLight = new AmbientLight(this);
@@ -138,7 +138,7 @@ public class MainRenderer extends GamePageClass {
         );
 
         twotp = new TouchProcessor(
-                TouchPoint -> (TouchPoint.touchX >Utils.getX() - 500 * Utils.getKx() && TouchPoint.touchY > Utils.getY() - 500 * Utils.getKy()),
+                TouchPoint -> (TouchPoint.touchX > Utils.getX() - 500 * Utils.getKx() && TouchPoint.touchY > Utils.getY() - 500 * Utils.getKy()),
                 null, TouchPoint -> {
             two_pos = new Vec3(TouchPoint.touchX, TouchPoint.touchY);
             return null;
@@ -191,11 +191,11 @@ public class MainRenderer extends GamePageClass {
         if (Utils.millis() % 1000 > 500) {
             simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 30 * Utils.getKx(), 1.1f);
         }
-        if(one_pos!=null){
-            one.prepareAndDraw(one_pos.x, one_pos.y,100*Utils.getKx(), 2);
+        if (one_pos != null) {
+            one.prepareAndDraw(one_pos.x, one_pos.y, 100 * Utils.getKx(), 2);
         }
-        if(two_pos!=null){
-            two.prepareAndDraw(two_pos.x, two_pos.y,100*Utils.getKx(), 2);
+        if (two_pos != null) {
+            two.prepareAndDraw(two_pos.x, two_pos.y, 100 * Utils.getKx(), 2);
         }
     }
 
