@@ -26,8 +26,6 @@ import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
 
 import java.util.List;
-
-
 public class MainRenderer extends GamePageClass {
     private final ErrorPrinter errorPrinter;
     private final Engine engine;
@@ -56,10 +54,10 @@ public class MainRenderer extends GamePageClass {
     private final TouchProcessor onetp, twotp;
     private Vec3 one_pos = null, two_pos = null;
 
+    AudioPlayer audioPlayer;
     public MainRenderer() {
-        AudioPlayer audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
-       // audioPlayer.playMusic("test.mp3", false);
-
+        audioPlayer= CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
+        audioPlayer.playMusic("test.mp3", false);
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
         camPos.value = 3;
@@ -151,7 +149,6 @@ public class MainRenderer extends GamePageClass {
             return null;
         }, null
         );
-
     }
 
     @Override
@@ -164,7 +161,7 @@ public class MainRenderer extends GamePageClass {
     @Override
     public void draw() {
         Utils.background(255, 255, 255);
-        errorPrinter.checkGLErrors("after reset");
+        //errorPrinter.checkGLErrors("after reset");
         //errorPrinter.printOpenGLState();
         fb.apply();
         skyBoxShader.apply();
@@ -205,12 +202,12 @@ public class MainRenderer extends GamePageClass {
 
     @Override
     public void onResume() {
-
+      audioPlayer.start();
     }
 
     @Override
     public void onPause() {
-
+        audioPlayer.pauseMusic();
     }
 
     private PImage redraw(List<Object> params) {
