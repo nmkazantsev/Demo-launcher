@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+
 group = 'com.nikitos'
 version = '1.0-SNAPSHOT'
 

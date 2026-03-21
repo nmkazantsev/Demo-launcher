@@ -19,6 +19,7 @@ import com.nikitos.main.vertices.SkyBox;
 import com.nikitos.maths.Matrix;
 import com.nikitos.maths.PVector;
 import com.nikitos.maths.Vec3;
+import com.nikitos.platformBridge.AudioPlayer;
 import com.nikitos.platformBridge.ErrorPrinter;
 import com.nikitos.platformBridge.PlatformBridge;
 import com.nikitos.utils.FileUtils;
@@ -56,6 +57,9 @@ public class MainRenderer extends GamePageClass {
     private Vec3 one_pos = null, two_pos = null;
 
     public MainRenderer() {
+        AudioPlayer audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
+        audioPlayer.playMusic("test.mp3", false);
+
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
         camPos.value = 3;
