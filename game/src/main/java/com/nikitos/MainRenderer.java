@@ -20,9 +20,7 @@ import com.nikitos.main.vertices.SkyBox;
 import com.nikitos.maths.Matrix;
 import com.nikitos.maths.PVector;
 import com.nikitos.maths.Vec3;
-import com.nikitos.platformBridge.AudioPlayer;
-import com.nikitos.platformBridge.ErrorPrinter;
-import com.nikitos.platformBridge.PlatformBridge;
+import com.nikitos.platformBridge.*;
 import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
 
@@ -58,9 +56,13 @@ public class MainRenderer extends GamePageClass {
 
     AudioPlayer audioPlayer;
 
+    private final GeneralPlatformBridge gl;
+    private final GLConstBridge glc;
 
     public MainRenderer() {
 
+        gl = CoreRenderer.engine.getPlatformBridge().getGeneralPlatformBridge();
+        glc = CoreRenderer.engine.getPlatformBridge().getGLConstBridge();
         simplePolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
         audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
         audioPlayer.playMusic("test.mp3", false);
@@ -195,6 +197,8 @@ public class MainRenderer extends GamePageClass {
         //for (int i = 0; i < 1000; i++) {
         fb.drawTexture(new PVector(0, 0, 1), new PVector(Utils.getX(), 0, 1), new PVector(0, Utils.getY(), 1));
         // }
+        gl.glBlendFunc(glc.GL_SRC_ALPHA(), glc.GL_ONE_MINUS_SRC_ALPHA());
+        CoreRenderer.engine.enableBlend();
         if (Utils.millis() % 1000 > 500) {
             simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 70 * Utils.getKx(), 1.1f);
         }
@@ -204,6 +208,7 @@ public class MainRenderer extends GamePageClass {
         if (two_pos != null) {
             two.prepareAndDraw(two_pos.x, two_pos.y, 100 * Utils.getKx(), 2);
         }
+        CoreRenderer.engine.disableBlend();
     }
 
     @Override
