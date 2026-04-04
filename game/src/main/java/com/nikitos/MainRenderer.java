@@ -4,6 +4,7 @@ import com.nikitos.main.camera.Camera;
 import com.nikitos.main.debugger.DebugValueFloat;
 import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
+import com.nikitos.main.images.PFont;
 import com.nikitos.main.images.PImage;
 import com.nikitos.main.light.AmbientLight;
 import com.nikitos.main.light.DirectedLight;
@@ -26,6 +27,7 @@ import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
 
 import java.util.List;
+
 public class MainRenderer extends GamePageClass {
     private final ErrorPrinter errorPrinter;
     private final Engine engine;
@@ -55,8 +57,12 @@ public class MainRenderer extends GamePageClass {
     private Vec3 one_pos = null, two_pos = null;
 
     AudioPlayer audioPlayer;
+
+
     public MainRenderer() {
-        audioPlayer= CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
+
+        simplePolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
+        audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
         audioPlayer.playMusic("test.mp3", false);
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
@@ -75,7 +81,7 @@ public class MainRenderer extends GamePageClass {
 
         matrix = Matrix.resetTranslateMatrix(matrix);
 
-        simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
+        // simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         one = new SimplePolygon(this::redraw, true, 0, this);
         two = new SimplePolygon(this::redraw, true, 0, this);
 
@@ -85,13 +91,13 @@ public class MainRenderer extends GamePageClass {
         skyBox = new SkyBox("skybox/", "jpg", this);
 
         skyBoxShader = new Shader(
-               "skybox/skybox_vertex.glsl",
+                "skybox/skybox_vertex.glsl",
                 "skybox/skybox_fragment.glsl",
                 this, new SkyBoxShaderAdaptor());
 
         lightShader = new Shader(
                 "shape/vertex_shader_light.glsl",
-                 "shape/fragment_shader_light.glsl",
+                "shape/fragment_shader_light.glsl",
                 this, new LightShaderAdaptor());
 
         ambientLight = new AmbientLight(this);
@@ -190,7 +196,7 @@ public class MainRenderer extends GamePageClass {
         fb.drawTexture(new PVector(0, 0, 1), new PVector(Utils.getX(), 0, 1), new PVector(0, Utils.getY(), 1));
         // }
         if (Utils.millis() % 1000 > 500) {
-            simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 30 * Utils.getKx(), 1.1f);
+            simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 70 * Utils.getKx(), 1.1f);
         }
         if (one_pos != null) {
             one.prepareAndDraw(one_pos.x, one_pos.y, 100 * Utils.getKx(), 2);
@@ -202,7 +208,7 @@ public class MainRenderer extends GamePageClass {
 
     @Override
     public void onResume() {
-      audioPlayer.start();
+        audioPlayer.start();
     }
 
     @Override
@@ -213,6 +219,18 @@ public class MainRenderer extends GamePageClass {
     private PImage redraw(List<Object> params) {
         PImage image = new PImage(200, 200);
         image.background(255, 0, 255, 255);
+        return image;
+    }
+
+    private PImage redraw_polig(List<Object> params) {
+        PFont font = PFont.fromAsset("W95font.otf");
+        PImage image = new PImage(200, 200);
+        image.fill(255);
+        image.clear();
+        image.drawSector(100, 100, 40, 0, 90, true);
+        image.setFont(font);
+        image.textSize(90);
+        image.text("test", 0, 0);
         return image;
     }
 }
