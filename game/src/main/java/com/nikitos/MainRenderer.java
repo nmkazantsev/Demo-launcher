@@ -1,6 +1,7 @@
 package com.nikitos;
 
 import com.nikitos.main.camera.Camera;
+import com.nikitos.main.debugger.Axes;
 import com.nikitos.main.debugger.DebugValueFloat;
 import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
@@ -58,6 +59,8 @@ public class MainRenderer extends GamePageClass {
 
     private final GeneralPlatformBridge gl;
     private final GLConstBridge glc;
+
+    private Axes axes;
 
     public MainRenderer() {
 
@@ -157,6 +160,7 @@ public class MainRenderer extends GamePageClass {
             return null;
         }, null
         );
+        axes = new Axes(this);
     }
 
     @Override
@@ -168,7 +172,7 @@ public class MainRenderer extends GamePageClass {
 
     @Override
     public void draw() {
-        Utils.background(255, 255, 255);
+        Utils.background(0,0,0);
         //errorPrinter.checkGLErrors("after reset");
         //errorPrinter.printOpenGLState();
         fb.apply();
@@ -184,6 +188,7 @@ public class MainRenderer extends GamePageClass {
         material.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
+       // axes.drawAxes(10, 1, 2, matrix, camera);
         Matrix.rotateM(matrix, 0, (engine.pageMillis() + 15000) / 50.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
