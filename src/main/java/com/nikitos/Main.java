@@ -11,6 +11,7 @@ public class Main {
         LauncherParams launcherParams = new LauncherParams()
                 .setFullScreen(false)
                 .setDebug(true)
+                //              .setStartPage(unused -> new MainRenderer());
                 .setStartPage(unused -> new BSODScreen("test error rorr rrorkr rjrjr fjdkfjd jfdkf smdskjdd msdhks sjhdsd sndshdsdjshdjs sdjhsdsdh dsbdjshdjsd sjdhsjhdsjdjdhsj sjhdsdhsd shdjshdj dsjhdsjdh hshdshdjsbd shjhdsbdjsdh jshdj"));
         DesktopLauncher desktopLauncher = new DesktopLauncher(launcherParams);
         desktopLauncher.run();

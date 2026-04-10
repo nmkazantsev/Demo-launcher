@@ -68,7 +68,7 @@ public class MainRenderer extends GamePageClass {
         glc = CoreRenderer.engine.getPlatformBridge().getGLConstBridge();
         simplePolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
         audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
-        audioPlayer.playMusic("test.mp3", false);
+        audioPlayer.playMusic("bsod.mp3", false);
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
         camPos.value = 3;
