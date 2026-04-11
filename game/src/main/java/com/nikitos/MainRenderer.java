@@ -237,7 +237,7 @@ public class MainRenderer extends GamePageClass {
 
     @Override
     public void onResume() {
-        audioPlayer.resume();
+        //audioPlayer.resume();
     }
 
     @Override
