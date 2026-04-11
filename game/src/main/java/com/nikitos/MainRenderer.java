@@ -7,6 +7,7 @@ import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PFont;
 import com.nikitos.main.images.PImage;
+import com.nikitos.main.keyboard.KeyboardProcessor;
 import com.nikitos.main.light.AmbientLight;
 import com.nikitos.main.light.DirectedLight;
 import com.nikitos.main.light.Material;
@@ -15,6 +16,7 @@ import com.nikitos.main.shaders.default_adaptors.LightShaderAdaptor;
 import com.nikitos.main.shaders.default_adaptors.MainShaderAdaptor;
 import com.nikitos.main.shaders.default_adaptors.SkyBoxShaderAdaptor;
 import com.nikitos.main.touch.TouchProcessor;
+import com.nikitos.main.vertices.Polygon;
 import com.nikitos.main.vertices.Shape;
 import com.nikitos.main.vertices.SimplePolygon;
 import com.nikitos.main.vertices.SkyBox;
@@ -38,6 +40,7 @@ public class MainRenderer extends GamePageClass {
     private Camera camera;
 
     private final SimplePolygon simplePolygon, one, two;
+    private final Polygon keyboardPolygon;
     private final Shape shape;
 
     private final SkyBox skyBox;
@@ -61,6 +64,9 @@ public class MainRenderer extends GamePageClass {
     private final GLConstBridge glc;
 
     private Axes axes;
+    private final PVector keyboardPolygonPosition = new PVector(260, 260, 2);
+    private final float keyboardPolygonSize = 140f;
+    private final float keyboardPolygonSpeed = 8f;
 
     public MainRenderer() {
 
@@ -68,7 +74,7 @@ public class MainRenderer extends GamePageClass {
         glc = CoreRenderer.engine.getPlatformBridge().getGLConstBridge();
         simplePolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
         audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
-        audioPlayer.playMusic("bsod.mp3", false);
+        audioPlayer.playMusic("test.mp3", false);
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
         camPos.value = 3;
@@ -89,6 +95,7 @@ public class MainRenderer extends GamePageClass {
         // simplePolygon = new SimplePolygon(this::redraw, true, 0, this);
         one = new SimplePolygon(this::redraw, true, 0, this);
         two = new SimplePolygon(this::redraw, true, 0, this);
+        keyboardPolygon = new Polygon(this::redrawKeyboardPolygon, true, 0, this);
 
         shape = new Shape("ponchik/ponchik.obj", "ponchik/albedo.png", this);
         shape.addNormalMap("ponchik/normal.png");
@@ -204,6 +211,12 @@ public class MainRenderer extends GamePageClass {
         // }
         gl.glBlendFunc(glc.GL_SRC_ALPHA(), glc.GL_ONE_MINUS_SRC_ALPHA());
         CoreRenderer.engine.enableBlend();
+        updateKeyboardPolygon();
+        keyboardPolygon.prepareAndDraw(
+                new PVector(keyboardPolygonPosition.x, keyboardPolygonPosition.y, keyboardPolygonPosition.z),
+                new PVector(keyboardPolygonPosition.x + keyboardPolygonSize, keyboardPolygonPosition.y, keyboardPolygonPosition.z),
+                new PVector(keyboardPolygonPosition.x, keyboardPolygonPosition.y + keyboardPolygonSize, keyboardPolygonPosition.z)
+        );
         if (Utils.millis() % 1000 > 500) {
             simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 70 * Utils.getKx(), 1.1f);
         }
@@ -226,6 +239,27 @@ public class MainRenderer extends GamePageClass {
         audioPlayer.pauseMusic();
     }
 
+    private void updateKeyboardPolygon() {
+        float delta = keyboardPolygonSpeed * Utils.getTimeK();
+        if (KeyboardProcessor.isKeyPressed("W")) {
+            keyboardPolygonPosition.y -= delta;
+        }
+        if (KeyboardProcessor.isKeyPressed("S")) {
+            keyboardPolygonPosition.y += delta;
+        }
+        if (KeyboardProcessor.isKeyPressed("A")) {
+            keyboardPolygonPosition.x -= delta;
+        }
+        if (KeyboardProcessor.isKeyPressed("D")) {
+            keyboardPolygonPosition.x += delta;
+        }
+
+        float maxX = Math.max(0, Utils.getX() - keyboardPolygonSize);
+        float maxY = Math.max(0, Utils.getY() - keyboardPolygonSize);
+        keyboardPolygonPosition.x = Math.max(0, Math.min(keyboardPolygonPosition.x, maxX));
+        keyboardPolygonPosition.y = Math.max(0, Math.min(keyboardPolygonPosition.y, maxY));
+    }
+
     private PImage redraw(List<Object> params) {
         PImage image = new PImage(200, 200);
         image.background(255, 0, 255, 255);
@@ -241,6 +275,16 @@ public class MainRenderer extends GamePageClass {
         image.setFont(font);
         image.textSize(90);
         image.text("test", 0, 0);
+        return image;
+    }
+
+    private PImage redrawKeyboardPolygon(List<Object> params) {
+        PImage image = new PImage(200, 200);
+        image.clear();
+        image.fill(40, 200, 120, 255);
+        image.drawSector(100, 100, 90, 0, 360, true);
+        image.fill(255, 255, 255, 255);
+        image.drawSector(70, 70, 18, 0, 360, true);
         return image;
     }
 }
