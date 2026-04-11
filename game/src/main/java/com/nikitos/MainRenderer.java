@@ -7,6 +7,10 @@ import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PFont;
 import com.nikitos.main.images.PImage;
+import com.nikitos.main.keyboard.KeyComboListener;
+import com.nikitos.main.keyboard.KeyListener;
+import com.nikitos.main.keyboard.KeyReleasedListener;
+import com.nikitos.main.keyboard.KeyboardProcessor;
 import com.nikitos.main.light.AmbientLight;
 import com.nikitos.main.light.DirectedLight;
 import com.nikitos.main.light.Material;
@@ -40,6 +44,12 @@ public class MainRenderer extends GamePageClass {
     private final SimplePolygon simplePolygon, one, two;
     private final Shape shape;
 
+    // Keyboard test polygon + listeners
+    private final SimplePolygon keyboardPolygon;
+    private boolean keyboardPolygonVisible = false;
+    private float keyboardPolygonX = 250;
+    private float keyboardPolygonY = 250;
+
     private final SkyBox skyBox;
     private final Shader skyBoxShader;
 
@@ -67,8 +77,9 @@ public class MainRenderer extends GamePageClass {
         gl = CoreRenderer.engine.getPlatformBridge().getGeneralPlatformBridge();
         glc = CoreRenderer.engine.getPlatformBridge().getGLConstBridge();
         simplePolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
+        keyboardPolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
         audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
-        audioPlayer.playMusic("bsod.mp3", false);
+        audioPlayer.playMusic("test.mp3", false);
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
         camPos.value = 3;
@@ -161,6 +172,77 @@ public class MainRenderer extends GamePageClass {
         }, null
         );
         axes = new Axes(this);
+
+        // -------- Keyboard tests --------
+        // Press: 3 independent listeners
+        KeyListener pressW = new KeyListener("W", key -> {
+            pb.log_i("keyboard_test", "pressW: " + key);
+            return null;
+        }, this);
+
+        KeyListener pressAD = new KeyListener(new String[]{"A", "D"}, key -> {
+            pb.log_i("keyboard_test", "pressAD: " + key);
+            return null;
+        }, this);
+
+        KeyListener pressAny = KeyListener.anyKey(key -> {
+            keyboardPolygonVisible = true;
+            pb.log_i("keyboard_test", "pressAny: " + key);
+            return null;
+        }, this);
+
+        // Hold: 3 independent listeners (fires once per key press after timeout)
+        KeyListener holdW = new KeyListener("W", null, this).setHoldListener(350, key -> {
+            pb.log_i("keyboard_test", "holdW: " + key);
+            keyboardPolygonX+=Utils.getKy();
+            return null;
+        });
+
+        KeyListener holdSpace = new KeyListener("SPACE", null, this).setHoldListener(600, key -> {
+            pb.log_i("keyboard_test", "holdSpace: " + key);
+            return null;
+        });
+
+        KeyListener holdAny = KeyListener.anyKey(null, this).setHoldListener(900, key -> {
+            pb.log_i("keyboard_test", "holdAny: " + key);
+            return null;
+        });
+
+        // Release: 3 independent listeners
+        KeyReleasedListener releaseW = new KeyReleasedListener("W", key -> {
+            pb.log_i("keyboard_test", "releaseW: " + key);
+            return null;
+        }, this);
+
+        KeyReleasedListener releaseASD = new KeyReleasedListener(new String[]{"A", "S", "D"}, key -> {
+            pb.log_i("keyboard_test", "releaseASD: " + key);
+            return null;
+        }, this);
+
+        KeyReleasedListener releaseAny = KeyReleasedListener.anyKey(key -> {
+            // Hide only when no keys are pressed anymore.
+            if (KeyboardProcessor.getKeysPressedNumber() == 0) {
+                keyboardPolygonVisible = false;
+            }
+            pb.log_i("keyboard_test", "releaseAny: " + key);
+            return null;
+        }, this);
+
+        // Combo: fires once when all keys from combo are pressed together (any order).
+        KeyComboListener comboCtrlS = new KeyComboListener(new String[]{"LCTRL", "S"}, combo -> {
+            pb.log_i("keyboard_test", "comboCtrlS: " + combo + " pressedKeys=" + KeyboardProcessor.getKeyPresedList());
+            return null;
+        }, this);
+
+        KeyComboListener comboWD = new KeyComboListener(new String[]{"W", "D"}, combo -> {
+            pb.log_i("keyboard_test", "comboWD: " + combo + " pressedKeys=" + KeyboardProcessor.getKeyPresedList());
+            return null;
+        }, this);
+
+        KeyComboListener comboAS = new KeyComboListener(new String[]{"A", "S"}, combo -> {
+            pb.log_i("keyboard_test", "comboAS: " + combo + " pressedKeys=" + KeyboardProcessor.getKeyPresedList());
+            return null;
+        }, this);
     }
 
     @Override
@@ -207,6 +289,22 @@ public class MainRenderer extends GamePageClass {
         if (Utils.millis() % 1000 > 500) {
             simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 70 * Utils.getKx(), 1.1f);
         }
+
+        // WASD movement for keyboardPolygon
+        float speedX = 8f * Utils.getKx();
+        float speedY = 8f * Utils.getKy();
+        if (KeyboardProcessor.isKeyPressed("W")) keyboardPolygonY -= speedY;
+        if (KeyboardProcessor.isKeyPressed("S")) keyboardPolygonY += speedY;
+        if (KeyboardProcessor.isKeyPressed("A")) keyboardPolygonX -= speedX;
+        if (KeyboardProcessor.isKeyPressed("D")) keyboardPolygonX += speedX;
+
+        keyboardPolygonX = Math.max(0, Math.min(keyboardPolygonX, Utils.getX()));
+        keyboardPolygonY = Math.max(0, Math.min(keyboardPolygonY, Utils.getY()));
+
+        if (keyboardPolygonVisible) {
+            keyboardPolygon.prepareAndDraw(keyboardPolygonX, keyboardPolygonY, 120 * Utils.getKx(), 2f);
+        }
+
         if (one_pos != null) {
             one.prepareAndDraw(one_pos.x, one_pos.y, 100 * Utils.getKx(), 2);
         }
