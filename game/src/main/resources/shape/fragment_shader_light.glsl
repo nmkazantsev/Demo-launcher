@@ -5,7 +5,7 @@ precision highp int;
 // количество источников света
 #define  snumber 1
 #define  dnumber 1
-#define  pnumber 1ksd
+#define  pnumber 1
 
 out vec4 FragColor;
 

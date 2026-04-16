@@ -7,6 +7,7 @@ import com.nikitos.main.debugger.Debugger;
 import com.nikitos.main.frameBuffers.FrameBuffer;
 import com.nikitos.main.images.PFont;
 import com.nikitos.main.images.PImage;
+import com.nikitos.main.keyboard.KeyListener;
 import com.nikitos.main.keyboard.KeyboardProcessor;
 import com.nikitos.main.light.AmbientLight;
 import com.nikitos.main.light.DirectedLight;
@@ -28,6 +29,7 @@ import com.nikitos.utils.FileUtils;
 import com.nikitos.utils.Utils;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class MainRenderer extends GamePageClass {
     private final ErrorPrinter errorPrinter;
@@ -69,6 +71,14 @@ public class MainRenderer extends GamePageClass {
     private final float keyboardPolygonSpeed = 8f;
 
     public MainRenderer() {
+
+        KeyListener keyListener = new KeyListener("V", new Function<String, Void>() {
+            @Override
+            public Void apply(String s) {
+                throw new RuntimeException("test exception");
+                //return null;
+            }
+        }, this);
 
         gl = CoreRenderer.engine.getPlatformBridge().getGeneralPlatformBridge();
         glc = CoreRenderer.engine.getPlatformBridge().getGLConstBridge();
@@ -179,7 +189,8 @@ public class MainRenderer extends GamePageClass {
 
     @Override
     public void draw() {
-        Utils.background(0,0,0);
+
+        Utils.background(0, 0, 0);
         errorPrinter.checkGLErrors("on draw");
         // errorPrinter.printOpenGLState();
         fb.apply();
@@ -195,7 +206,7 @@ public class MainRenderer extends GamePageClass {
         material.apply();
         camera.apply();
         Matrix.applyMatrix(matrix);
-       // axes.drawAxes(10, 1, 2, matrix, camera);
+        // axes.drawAxes(10, 1, 2, matrix, camera);
         Matrix.rotateM(matrix, 0, (engine.pageMillis() + 15000) / 50.0f, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
@@ -231,7 +242,7 @@ public class MainRenderer extends GamePageClass {
 
     @Override
     public void onResume() {
-        audioPlayer.start();
+        audioPlayer.resume();
     }
 
     @Override
@@ -285,13 +296,13 @@ public class MainRenderer extends GamePageClass {
         image.drawSector(100, 100, 90, 0, 360, true);
         image.fill(255, 255, 255, 255);
         image.drawSector(70, 70, 18, 0, 360, true);
-       // PFont font = PFont.fromAsset("W95font.otf");
-       // image.setFont(font);
-        image.textSize(50 );
-        image.text("text", 10,10);
+        // PFont font = PFont.fromAsset("W95font.otf");
+        // image.setFont(font);
+        image.textSize(50);
+        image.text("text", 10, 10);
         image.stroke(0);
         image.strokeWeight(5);
-        image.line(0,0,200,200);
+        image.line(0, 0, 200, 200);
         return image;
     }
 }
