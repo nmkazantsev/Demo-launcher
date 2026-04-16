@@ -17,9 +17,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fix build">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/game/src/main/java/com/nikitos/MainRenderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +61,7 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
-        <entry key="$PROJECT_DIR$/../sealEngine_3M" value="8-обработка-тача" />
+        <entry key="$PROJECT_DIR$/../sealEngine_3M" value="1548ee6abdcb23919822e01626fde921b1cb5ddd" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -115,7 +114,7 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/nikita/IdeaProjects/Seal_Engine_3-M/Demo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/nikita/IdeaProjects/Seal_Engine_3-M/sealEngine_3M&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -149,8 +148,8 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle jar" />
-      <command value="gradle shadowJar" />
       <command value="gradle clean" />
+      <command value="gradle shadowJar" />
     </option>
   </component>
   <component name="RunManager" selected="Gradle.Demo [shadowJar]">
@@ -234,10 +233,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Demo [shadowJar]" />
+        <item itemvalue="JAR Application.game-1.0-SNAPSHOT.jar" />
         <item itemvalue="JAR Application.demo-app-1.0.0.jar" />
         <item itemvalue="Gradle.Demo [clean]" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JAR Application.game-1.0-SNAPSHOT.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -292,6 +291,9 @@
       <workItem from="1772888337667" duration="72000" />
       <workItem from="1774702650386" duration="822000" />
       <workItem from="1774799063246" duration="142000" />
+      <workItem from="1776006148647" duration="1256000" />
+      <workItem from="1776008002016" duration="2584000" />
+      <workItem from="1776141312587" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />

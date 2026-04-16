@@ -180,8 +180,8 @@ public class MainRenderer extends GamePageClass {
     @Override
     public void draw() {
         Utils.background(0,0,0);
-        //errorPrinter.checkGLErrors("after reset");
-        //errorPrinter.printOpenGLState();
+        errorPrinter.checkGLErrors("on draw");
+        // errorPrinter.printOpenGLState();
         fb.apply();
         skyBoxShader.apply();
         //shader.apply();
@@ -285,6 +285,13 @@ public class MainRenderer extends GamePageClass {
         image.drawSector(100, 100, 90, 0, 360, true);
         image.fill(255, 255, 255, 255);
         image.drawSector(70, 70, 18, 0, 360, true);
+       // PFont font = PFont.fromAsset("W95font.otf");
+       // image.setFont(font);
+        image.textSize(50 );
+        image.text("text", 10,10);
+        image.stroke(0);
+        image.strokeWeight(5);
+        image.line(0,0,200,200);
         return image;
     }
 }
