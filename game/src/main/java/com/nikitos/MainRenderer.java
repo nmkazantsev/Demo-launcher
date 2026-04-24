@@ -70,10 +70,7 @@ public class MainRenderer extends GamePageClass {
     private final float keyboardPolygonSize = 140f;
     private final float keyboardPolygonSpeed = 8f;
 
-
-    private MouseControlBridge mouseControlBridge;
     public MainRenderer() {
-        mouseControlBridge = new  MouseControlBridge();
 
         KeyListener keyListener = new KeyListener("V", new Function<String, Void>() {
             @Override
@@ -180,6 +177,16 @@ public class MainRenderer extends GamePageClass {
             return null;
         }, null
         );
+        new TouchProcessor(
+                TouchPoint -> true,
+                null
+                , TouchPoint -> {
+            System.out.println("touch");
+            return null;
+        }, null,
+                this).setPriority(-1);
+
+
         axes = new Axes(this);
     }
 
@@ -257,9 +264,12 @@ public class MainRenderer extends GamePageClass {
         float delta = keyboardPolygonSpeed * Utils.getTimeK();
         if (KeyboardProcessor.isKeyPressed("W")) {
             keyboardPolygonPosition.y -= delta;
-            mouseControlBridge.setMousePosition(100,100);
+            engine.disableMouseCursor();
         }
         if (KeyboardProcessor.isKeyPressed("S")) {
+            engine.enableMouseCursor();
+            engine.setMousePosition(100, 100);
+            engine.enableMouseCursor();
             keyboardPolygonPosition.y += delta;
         }
         if (KeyboardProcessor.isKeyPressed("A")) {
