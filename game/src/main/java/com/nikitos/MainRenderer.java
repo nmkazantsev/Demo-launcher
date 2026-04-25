@@ -186,7 +186,6 @@ public class MainRenderer extends GamePageClass {
         }, null,
                 this).setPriority(-1);
 
-
         axes = new Axes(this);
     }
 
