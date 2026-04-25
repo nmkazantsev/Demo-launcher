@@ -83,8 +83,6 @@ public class MainRenderer extends GamePageClass {
         gl = CoreRenderer.engine.getPlatformBridge().getGeneralPlatformBridge();
         glc = CoreRenderer.engine.getPlatformBridge().getGLConstBridge();
         simplePolygon = new SimplePolygon(this::redraw_polig, true, 0, this);
-        audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
-        audioPlayer.playMusic("test.mp3", false);
         System.out.println("Java home: " + System.getProperty("java.home"));
         String version = System.getProperty("java.version");
         camPos.value = 3;
@@ -187,6 +185,8 @@ public class MainRenderer extends GamePageClass {
                 this).setPriority(-1);
 
         axes = new Axes(this);
+        audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
+        audioPlayer.playMusic("test.mp3", false);
     }
 
     @Override
