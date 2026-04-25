@@ -17,9 +17,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca0360-0802-405b-986b-ddb9a27cc2b9" name="Changes" comment="fix build">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/ENGINE_INTERNALS_MAP_FOR_CODEX.md" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/ENGINE_INTERNALS_MAP_FOR_CODEX.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/PROJECT_MAP_FOR_CODEX.md" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/PROJECT_MAP_FOR_CODEX.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/core/src/main/java/com/nikitos/main/touch/TouchProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sealEngine_3M/desktop/src/main/java/com/nikitos/platform/DesktopLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,6 +300,7 @@
       <workItem from="1776141312587" duration="5000" />
       <workItem from="1776686313045" duration="19000" />
       <workItem from="1776933848813" duration="83000" />
+      <workItem from="1777120875601" duration="432000" />
     </task>
     <task id="LOCAL-00001" summary="fix order of projects">
       <option name="closed" value="true" />
