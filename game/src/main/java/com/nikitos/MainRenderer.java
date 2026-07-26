@@ -161,6 +161,7 @@ public class MainRenderer extends GamePageClass {
             return null;
         }, TouchPoint -> {
             one_pos = null;
+            CoreRenderer.engine.startNewPage(new GameResultRenderer("win"));
             return null;
         }, null
         );
@@ -187,6 +188,7 @@ public class MainRenderer extends GamePageClass {
         axes = new Axes(this);
         audioPlayer = CoreRenderer.engine.getPlatformBridge().getAudioPlayer();
         audioPlayer.playMusic("test.mp3", false);
+
     }
 
     @Override
