@@ -37,3 +37,23 @@ application {
     mainClass = 'com.nikitos.Main'
     applicationDefaultJvmArgs = ['--add-opens', 'java.base/sun.misc=ALL-UNNAMED']
 }
+
+sourceSets {
+    frameCapture {
+        java {
+            srcDir 'game/src/main/java'
+            include 'com/nikitos/FrameCaptureTestRenderer.java'
+            include 'com/nikitos/FrameCaptureTestMain.java'
+        }
+    }
+}
+
+dependencies {
+    frameCaptureImplementation project(':core')
+    frameCaptureImplementation project(':desktop')
+}
+
+tasks.register('frameCaptureSmoke', JavaExec) {
+    classpath = sourceSets.frameCapture.runtimeClasspath
+    mainClass = 'com.nikitos.FrameCaptureTestMain'
+}
