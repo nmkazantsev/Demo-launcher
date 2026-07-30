@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = 'Demo'
 include('core')
-project(':core').projectDir = file('../sealEngine_3M/core')
+project(':core').projectDir = file('../seal-runtime-worktree/core')
 include('desktop')
-project(':desktop').projectDir = file('../sealEngine_3M/desktop')
+project(':desktop').projectDir = file('../seal-runtime-worktree/desktop')
 include 'game'
