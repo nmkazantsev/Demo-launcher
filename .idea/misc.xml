@@ -1,8 +1,0 @@
-<project version="4">
-  <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$" />
-    <file type="web" url="file://$PROJECT_DIR$/../sealEngine_3M/core" />
-    <file type="web" url="file://$PROJECT_DIR$/../sealEngine_3M/desktop" />
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="ms-21" project-jdk-type="JavaSDK" />
-</project>
