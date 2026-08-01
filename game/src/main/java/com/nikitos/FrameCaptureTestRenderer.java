@@ -26,7 +26,7 @@ public final class FrameCaptureTestRenderer extends GamePageClass {
 
     public FrameCaptureTestRenderer(Path outputDirectory) {
         this.outputDirectory = outputDirectory;
-        shader = new Shader("vertex_shader_engine.glsl", "fragment_shader_engine.glsl", this, new MainShaderAdaptor());
+        shader = new Shader("vertex_shader.glsl", "fragment_shader.glsl", this, new MainShaderAdaptor());
         marker = new SimplePolygon(this::drawMarker, false, 0, this);
     }
 

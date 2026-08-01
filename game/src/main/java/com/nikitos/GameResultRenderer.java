@@ -56,7 +56,11 @@ public class GameResultRenderer extends GamePageClass {
     }
 
     @Override
-    public void draw() {
+    public void update(float dtMillis) {
+    }
+
+    @Override
+    public void render() {
         Utils.background(240, 240, 240);
         shader.apply();
         applyMatrix(resetTranslateMatrix(matrix));

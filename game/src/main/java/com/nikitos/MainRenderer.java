@@ -69,6 +69,9 @@ public class MainRenderer extends GamePageClass {
     private final PVector keyboardPolygonPosition = new PVector(260, 260, 2);
     private final float keyboardPolygonSize = 140f;
     private final float keyboardPolygonSpeed = 8f;
+    private float rotationDegrees;
+    private float animationMillis;
+    private boolean simplePolygonVisible;
 
     public MainRenderer() {
 
@@ -199,7 +202,15 @@ public class MainRenderer extends GamePageClass {
     }
 
     @Override
-    public void draw() {
+    public void update(float dtMillis) {
+        rotationDegrees += dtMillis / 50.0f;
+        animationMillis += dtMillis;
+        simplePolygonVisible = animationMillis % 1000.0f > 500.0f;
+        updateKeyboardPolygon(dtMillis);
+    }
+
+    @Override
+    public void render() {
 
         Utils.background(0, 0, 0);
         errorPrinter.checkGLErrors("on draw");
@@ -216,9 +227,9 @@ public class MainRenderer extends GamePageClass {
         lightShader.apply();
         material.apply();
         camera.apply();
+        matrix = Matrix.resetTranslateMatrix(matrix);
         Matrix.applyMatrix(matrix);
-        // axes.drawAxes(10, 1, 2, matrix, camera);
-        Matrix.rotateM(matrix, 0, (engine.pageMillis() + 15000) / 50.0f, 0, 1, 1);
+        Matrix.rotateM(matrix, 0, rotationDegrees, 0, 1, 1);
         Matrix.applyMatrix(matrix);
         shape.prepareAndDraw();
         fb.connectDefaultFrameBuffer();
@@ -233,14 +244,14 @@ public class MainRenderer extends GamePageClass {
         // }
         gl.glBlendFunc(glc.GL_SRC_ALPHA(), glc.GL_ONE_MINUS_SRC_ALPHA());
         CoreRenderer.engine.enableBlend();
-        updateKeyboardPolygon();
         keyboardPolygon.prepareAndDraw(
                 new PVector(keyboardPolygonPosition.x, keyboardPolygonPosition.y, keyboardPolygonPosition.z),
                 new PVector(keyboardPolygonPosition.x + keyboardPolygonSize, keyboardPolygonPosition.y, keyboardPolygonPosition.z),
                 new PVector(keyboardPolygonPosition.x, keyboardPolygonPosition.y + keyboardPolygonSize, keyboardPolygonPosition.z)
         );
-        if (Utils.millis() % 1000 > 500) {
-            simplePolygon.prepareAndDraw((engine.pageMillis() / 100.0f + 100.0f) * Utils.getKx(), (engine.pageMillis() / 100.0f + 100.0f) * Utils.getKy(), 70 * Utils.getKx(), 1.1f);
+        if (simplePolygonVisible) {
+            float animationPosition = (animationMillis / 100.0f + 100.0f);
+            simplePolygon.prepareAndDraw(animationPosition * Utils.getKx(), animationPosition * Utils.getKy(), 70 * Utils.getKx(), 1.1f);
         }
         if (one_pos != null) {
             one.prepareAndDraw(one_pos.x, one_pos.y, 100 * Utils.getKx(), 2);
@@ -261,8 +272,8 @@ public class MainRenderer extends GamePageClass {
         audioPlayer.pauseMusic();
     }
 
-    private void updateKeyboardPolygon() {
-        float delta = keyboardPolygonSpeed * Utils.getTimeK();
+    private void updateKeyboardPolygon(float dtMillis) {
+        float delta = keyboardPolygonSpeed * dtMillis / (1000.0f / 120.0f);
         if (KeyboardProcessor.isKeyPressed("W")) {
             keyboardPolygonPosition.y -= delta;
             engine.disableMouseCursor();
