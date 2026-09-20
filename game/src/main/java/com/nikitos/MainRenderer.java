@@ -164,7 +164,7 @@ public class MainRenderer extends GamePageClass {
             return null;
         }, TouchPoint -> {
             one_pos = null;
-            CoreRenderer.engine.startNewPage(new GameResultRenderer("win"));
+            //CoreRenderer.engine.startNewPage(new GameResultRenderer("win"));
             return null;
         }, null
         );
