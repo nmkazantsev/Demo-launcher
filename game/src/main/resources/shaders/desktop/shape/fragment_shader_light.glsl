@@ -165,7 +165,7 @@ vec3 CalcSpotLight(vec3 color, SpotLight light, vec3 normal, vec3 fragPos, vec3 
                light.linear * distance +
                light.quadratic * distance * distance);
 
-    float theta = dot(lightDir, normalize(-sLightDir[i]));
+    float theta = dot(lightDir, normalize(sLightDir[i]));
     float epsilon = light.cutOff - light.outerCutOff;
     float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
 
